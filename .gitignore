@@ -1,0 +1,6 @@
+# IPython notebook
+*.ipynb_checkpoints
+
+local_data/*
+src/local_playground/*
+.DS_Store
