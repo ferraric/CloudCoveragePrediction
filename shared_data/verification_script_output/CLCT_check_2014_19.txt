@@ -1,0 +1,1872 @@
+For year:  2014 and month:  1 and days starting with:  0
+None
+For year:  2014 and month:  1 and days starting with:  1
+None
+For year:  2014 and month:  1 and days starting with:  2
+None
+For year:  2014 and month:  1 and days starting with:  3
+None
+For year:  2014 and month:  2 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.08229763134936074
+percentage of clct > 100:
+0.0001618607569429239
+max clct:
+100.00077
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  2 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.12095955777419858
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  2 and days starting with:  2
+total number of values:  667358076
+percentage of clct < 0:
+0.16049532305352668
+percentage of clct > 100:
+3.136247353961743e-05
+max clct:
+100.00082
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  2 and days starting with:  3
+None
+For year:  2014 and month:  3 and days starting with:  0
+total number of values:  606689160
+percentage of clct < 0:
+0.5293058540884429
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  3 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.42566017250085697
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  3 and days starting with:  2
+total number of values:  667358076
+percentage of clct < 0:
+0.11073176104038036
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  3 and days starting with:  3
+total number of values:  182006748
+percentage of clct < 0:
+0.08829866571760295
+percentage of clct > 100:
+0.0005144754303285503
+max clct:
+100.00071
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  4 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.16366500523176405
+percentage of clct > 100:
+0.00021861577052376902
+max clct:
+100.00078
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  4 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.26268797050315956
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  4 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.030022267361207947
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  4 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.10886906237124791
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  5 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.1409456323114909
+percentage of clct > 100:
+0.00020485554144998464
+max clct:
+100.00079
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  5 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.1422015545269783
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  5 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.10483485755154529
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  5 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.11570013876628354
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  6 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.20450346434408026
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  6 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.2107533658587208
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  6 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.12377647256243489
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  6 and days starting with:  3
+None
+For year:  2014 and month:  7 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.06214385523771899
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  7 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.20588710397704596
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  7 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.06184096262189136
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  7 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.12284031908531215
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  8 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.07339999283982591
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  8 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.13762674063051772
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  8 and days starting with:  2
+total number of values:  667358076
+percentage of clct < 0:
+0.1195534344593741
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  8 and days starting with:  3
+total number of values:  182006748
+percentage of clct < 0:
+0.21432642156762233
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  9 and days starting with:  0
+total number of values:  606689160
+percentage of clct < 0:
+0.1301593834312121
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  9 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.11950990135816283
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  9 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.1860617964560303
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  9 and days starting with:  3
+total number of values:  121337832
+percentage of clct < 0:
+0.15417450346401443
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  10 and days starting with:  0
+total number of values:  606689160
+percentage of clct < 0:
+0.11065500989007286
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  10 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.147792183782109
+percentage of clct > 100:
+3.239989761258742e-05
+max clct:
+100.00029
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  10 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.30991681280959976
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  10 and days starting with:  3
+total number of values:  242675664
+percentage of clct < 0:
+0.23005759654581598
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  11 and days starting with:  0
+total number of values:  606689160
+percentage of clct < 0:
+0.10547235424479975
+percentage of clct > 100:
+3.634810287363631e-05
+max clct:
+100.00019
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  11 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.08442759358570595
+percentage of clct > 100:
+6.251141853267989e-05
+max clct:
+100.00052
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  11 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.037738346657344816
+percentage of clct > 100:
+0.003225402390025671
+max clct:
+100.00088
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  11 and days starting with:  3
+total number of values:  121337832
+percentage of clct < 0:
+0.009569917154939772
+percentage of clct > 100:
+0.0038440937365684926
+max clct:
+100.000824
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  12 and days starting with:  0
+total number of values:  546020244
+percentage of clct < 0:
+0.08133577552849854
+percentage of clct > 100:
+0.001044851370016237
+max clct:
+100.00085
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  12 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.15143387293530458
+percentage of clct > 100:
+0.0019503590053705042
+max clct:
+100.00088
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  12 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.262978820983055
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2014 and month:  12 and days starting with:  3
+total number of values:  121337832
+percentage of clct < 0:
+0.28268579910015207
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  1 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.26333109213770867
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  1 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.084532662492272
+percentage of clct > 100:
+0.00033294095227721996
+max clct:
+100.00081
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  1 and days starting with:  2
+total number of values:  667358076
+percentage of clct < 0:
+0.06779877044598769
+percentage of clct > 100:
+0.000886643949147324
+max clct:
+100.000824
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  1 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.045448809403484315
+percentage of clct > 100:
+0.0003933480532271254
+max clct:
+100.000374
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  2 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.26764375104377996
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  2 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.28032437703903157
+percentage of clct > 100:
+0.00012260122355463435
+max clct:
+100.00088
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  2 and days starting with:  2
+total number of values:  667358076
+percentage of clct < 0:
+0.1132121460983114
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct: 
+-9.999999e-05
+
+For year:  2015 and month:  2 and days starting with:  3
+None
+For year:  2015 and month:  3 and days starting with:  0
+total number of values:  606689160
+percentage of clct < 0:
+0.27720493143474
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  3 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.18260412795244274
+percentage of clct > 100:
+0.0001599872000350229
+max clct:
+100.00072
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  3 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.09726955013777841
+percentage of clct > 100:
+0.0001943279597523494
+max clct:
+100.000656
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  3 and days starting with:  3
+total number of values:  182006748
+percentage of clct < 0:
+0.10214196563744989
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  4 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.3464390502108796
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  4 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.32755364927458624
+percentage of clct > 100:
+0.0
+max clct:
+99.99995
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  4 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.14748270487201937
+percentage of clct > 100:
+0.003174937228151563
+max clct:
+100.00087
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  4 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.012507278026856455
+percentage of clct > 100:
+0.011961479582064727
+max clct:
+100.00086
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  5 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.17121497305443562
+percentage of clct > 100:
+0.0010531152993793994
+max clct:
+100.00088
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  5 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.11829388188398378
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  5 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.11457111057222999
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  5 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.11462703569650066
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  6 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.06972481179653844
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  6 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.09030673412174806
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  6 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.37141896107060823
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  6 and days starting with:  3
+None
+For year:  2015 and month:  7 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.3902607611010115
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  7 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.2819862178956134
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  7 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.1737976275473039
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  7 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.2574524489608484
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  8 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.2404283334094244
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  8 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.10339664439254746
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  8 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.284650697401615
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  8 and days starting with:  3
+total number of values:  182006748
+percentage of clct < 0:
+0.1896581493780659
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  9 and days starting with:  0
+total number of values:  546020244
+percentage of clct < 0:
+0.28286700849868124
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  9 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.09699666053041066
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  9 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.28896326277968554
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  9 and days starting with:  3
+total number of values:  121337832
+percentage of clct < 0:
+0.2178301405616016
+percentage of clct > 100:
+0.0004709742959640156
+max clct:
+100.00084
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  10 and days starting with:  0
+total number of values:  606689160
+percentage of clct < 0:
+0.06899788352902168
+percentage of clct > 100:
+0.0
+max clct:
+99.99995
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  10 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.17147163549122915
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  10 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.25030245719241134
+percentage of clct > 100:
+0.00016279066751964604
+max clct:
+100.00083
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  10 and days starting with:  3
+total number of values:  242675664
+percentage of clct < 0:
+0.6258669348896888
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  11 and days starting with:  0
+total number of values:  606689160
+percentage of clct < 0:
+0.3340988258303478
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  11 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.20912378204790516
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  11 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.23267814498833855
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  11 and days starting with:  3
+total number of values:  121337832
+percentage of clct < 0:
+0.3526234175669135
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  12 and days starting with:  0
+total number of values:  606689160
+percentage of clct < 0:
+0.36847017342455896
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  12 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.22756223164868591
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  12 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.3321374875617249
+percentage of clct > 100:
+0.00017454160545739766
+max clct:
+100.00088
+min clct:
+-9.999999e-05
+
+For year:  2015 and month:  12 and days starting with:  3
+total number of values:  182006748
+percentage of clct < 0:
+0.12349851446167259
+percentage of clct > 100:
+0.002461985640224724
+max clct:
+100.00076
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  1 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.06267512375170538
+percentage of clct > 100:
+0.00030637375548894986
+max clct:
+100.00087
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  1 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.21450846701573945
+percentage of clct > 100:
+2.137283393470664e-05
+max clct:
+100.00085
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  1 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.23416214079051617
+percentage of clct > 100:
+6.453881589049655e-05
+max clct:
+100.00065
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  1 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.0903670011180025
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  2 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.09032809047277741
+percentage of clct > 100:
+0.00022746821453015578
+max clct:
+100.00078
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  2 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.10291832970940176
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  2 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.06814099414599727
+percentage of clct > 100:
+3.135323312298289e-05
+max clct:
+100.00063
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  2 and days starting with:  3
+None
+For year:  2016 and month:  3 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.10994190920677492
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  3 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.36512871627155274
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  3 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.1539623011669875
+percentage of clct > 100:
+0.00024530546526769435
+max clct:
+100.000854
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  3 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.025706096347592564
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  4 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.061934871227961284
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  4 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.16683220448507766
+percentage of clct > 100:
+0.0011126922612781367
+max clct:
+100.00086
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  4 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.10964884939321042
+percentage of clct > 100:
+0.001374155094513309
+max clct:
+100.00088
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  4 and days starting with:  3
+None
+For year:  2016 and month:  5 and days starting with:  0
+total number of values:  728026992
+percentage of clct < 0:
+0.22519107643195735
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  5 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.10157261724164206
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  5 and days starting with:  2
+total number of values:  728026992
+percentage of clct < 0:
+0.058123038657885366
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  5 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.0020006785682473707
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  6 and days starting with:  0
+total number of values:  667358076
+percentage of clct < 0:
+0.05015921617467622
+percentage of clct > 100:
+9.302951778469224e-05
+max clct:
+100.000854
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  6 and days starting with:  1
+total number of values:  728026992
+percentage of clct < 0:
+0.04137077653846109
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  6 and days starting with:  2
+total number of values:  667358076
+percentage of clct < 0:
+0.26850151881581485
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  6 and days starting with:  3
+total number of values:  60668916
+percentage of clct < 0:
+0.21107171257188773
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2016 and month:  7 and days starting with:  0
+None
+For year:  2016 and month:  7 and days starting with:  1
+None
+For year:  2016 and month:  7 and days starting with:  2
+None
+For year:  2016 and month:  7 and days starting with:  3
+None
+For year:  2016 and month:  8 and days starting with:  0
+None
+For year:  2016 and month:  8 and days starting with:  1
+None
+For year:  2016 and month:  8 and days starting with:  2
+None
+For year:  2016 and month:  8 and days starting with:  3
+None
+For year:  2016 and month:  9 and days starting with:  0
+None
+For year:  2016 and month:  9 and days starting with:  1
+None
+For year:  2016 and month:  9 and days starting with:  2
+None
+For year:  2016 and month:  9 and days starting with:  3
+None
+For year:  2016 and month:  10 and days starting with:  0
+None
+For year:  2016 and month:  10 and days starting with:  1
+None
+For year:  2016 and month:  10 and days starting with:  2
+None
+For year:  2016 and month:  10 and days starting with:  3
+None
+For year:  2016 and month:  11 and days starting with:  0
+None
+For year:  2016 and month:  11 and days starting with:  1
+None
+For year:  2016 and month:  11 and days starting with:  2
+None
+For year:  2016 and month:  11 and days starting with:  3
+None
+For year:  2016 and month:  12 and days starting with:  0
+None
+For year:  2016 and month:  12 and days starting with:  1
+None
+For year:  2016 and month:  12 and days starting with:  2
+None
+For year:  2016 and month:  12 and days starting with:  3
+None
+For year:  2017 and month:  1 and days starting with:  0
+None
+For year:  2017 and month:  1 and days starting with:  1
+None
+For year:  2017 and month:  1 and days starting with:  2
+None
+For year:  2017 and month:  1 and days starting with:  3
+None
+For year:  2017 and month:  2 and days starting with:  0
+None
+For year:  2017 and month:  2 and days starting with:  1
+None
+For year:  2017 and month:  2 and days starting with:  2
+None
+For year:  2017 and month:  2 and days starting with:  3
+None
+For year:  2017 and month:  3 and days starting with:  0
+None
+For year:  2017 and month:  3 and days starting with:  1
+None
+For year:  2017 and month:  3 and days starting with:  2
+None
+For year:  2017 and month:  3 and days starting with:  3
+None
+For year:  2017 and month:  4 and days starting with:  0
+None
+For year:  2017 and month:  4 and days starting with:  1
+None
+For year:  2017 and month:  4 and days starting with:  2
+None
+For year:  2017 and month:  4 and days starting with:  3
+None
+For year:  2017 and month:  5 and days starting with:  0
+None
+For year:  2017 and month:  5 and days starting with:  1
+None
+For year:  2017 and month:  5 and days starting with:  2
+None
+For year:  2017 and month:  5 and days starting with:  3
+None
+For year:  2017 and month:  6 and days starting with:  0
+None
+For year:  2017 and month:  6 and days starting with:  1
+None
+For year:  2017 and month:  6 and days starting with:  2
+None
+For year:  2017 and month:  6 and days starting with:  3
+None
+For year:  2017 and month:  7 and days starting with:  0
+None
+For year:  2017 and month:  7 and days starting with:  1
+None
+For year:  2017 and month:  7 and days starting with:  2
+None
+For year:  2017 and month:  7 and days starting with:  3
+None
+For year:  2017 and month:  8 and days starting with:  0
+None
+For year:  2017 and month:  8 and days starting with:  1
+None
+For year:  2017 and month:  8 and days starting with:  2
+None
+For year:  2017 and month:  8 and days starting with:  3
+None
+For year:  2017 and month:  9 and days starting with:  0
+None
+For year:  2017 and month:  9 and days starting with:  1
+None
+For year:  2017 and month:  9 and days starting with:  2
+None
+For year:  2017 and month:  9 and days starting with:  3
+None
+For year:  2017 and month:  10 and days starting with:  0
+None
+For year:  2017 and month:  10 and days starting with:  1
+None
+For year:  2017 and month:  10 and days starting with:  2
+None
+For year:  2017 and month:  10 and days starting with:  3
+None
+For year:  2017 and month:  11 and days starting with:  0
+None
+For year:  2017 and month:  11 and days starting with:  1
+None
+For year:  2017 and month:  11 and days starting with:  2
+None
+For year:  2017 and month:  11 and days starting with:  3
+None
+For year:  2017 and month:  12 and days starting with:  0
+None
+For year:  2017 and month:  12 and days starting with:  1
+None
+For year:  2017 and month:  12 and days starting with:  2
+None
+For year:  2017 and month:  12 and days starting with:  3
+None
+For year:  2018 and month:  1 and days starting with:  0
+None
+For year:  2018 and month:  1 and days starting with:  1
+None
+For year:  2018 and month:  1 and days starting with:  2
+None
+For year:  2018 and month:  1 and days starting with:  3
+None
+For year:  2018 and month:  2 and days starting with:  0
+None
+For year:  2018 and month:  2 and days starting with:  1
+None
+For year:  2018 and month:  2 and days starting with:  2
+None
+For year:  2018 and month:  2 and days starting with:  3
+None
+For year:  2018 and month:  3 and days starting with:  0
+None
+For year:  2018 and month:  3 and days starting with:  1
+None
+For year:  2018 and month:  3 and days starting with:  2
+None
+For year:  2018 and month:  3 and days starting with:  3
+None
+For year:  2018 and month:  4 and days starting with:  0
+None
+For year:  2018 and month:  4 and days starting with:  1
+None
+For year:  2018 and month:  4 and days starting with:  2
+None
+For year:  2018 and month:  4 and days starting with:  3
+None
+For year:  2018 and month:  5 and days starting with:  0
+None
+For year:  2018 and month:  5 and days starting with:  1
+None
+For year:  2018 and month:  5 and days starting with:  2
+None
+For year:  2018 and month:  5 and days starting with:  3
+None
+For year:  2018 and month:  6 and days starting with:  0
+None
+For year:  2018 and month:  6 and days starting with:  1
+None
+For year:  2018 and month:  6 and days starting with:  2
+None
+For year:  2018 and month:  6 and days starting with:  3
+None
+For year:  2018 and month:  7 and days starting with:  0
+None
+For year:  2018 and month:  7 and days starting with:  1
+None
+For year:  2018 and month:  7 and days starting with:  2
+None
+For year:  2018 and month:  7 and days starting with:  3
+None
+For year:  2018 and month:  8 and days starting with:  0
+None
+For year:  2018 and month:  8 and days starting with:  1
+None
+For year:  2018 and month:  8 and days starting with:  2
+None
+For year:  2018 and month:  8 and days starting with:  3
+None
+For year:  2018 and month:  9 and days starting with:  0
+None
+For year:  2018 and month:  9 and days starting with:  1
+None
+For year:  2018 and month:  9 and days starting with:  2
+None
+For year:  2018 and month:  9 and days starting with:  3
+None
+For year:  2018 and month:  10 and days starting with:  0
+None
+For year:  2018 and month:  10 and days starting with:  1
+None
+For year:  2018 and month:  10 and days starting with:  2
+None
+For year:  2018 and month:  10 and days starting with:  3
+None
+For year:  2018 and month:  11 and days starting with:  0
+None
+For year:  2018 and month:  11 and days starting with:  1
+None
+For year:  2018 and month:  11 and days starting with:  2
+None
+For year:  2018 and month:  11 and days starting with:  3
+None
+For year:  2018 and month:  12 and days starting with:  0
+None
+For year:  2018 and month:  12 and days starting with:  1
+None
+For year:  2018 and month:  12 and days starting with:  2
+None
+For year:  2018 and month:  12 and days starting with:  3
+None
+For year:  2019 and month:  1 and days starting with:  0
+total number of values:  303344580
+percentage of clct < 0:
+0.06795334863078813
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  1 and days starting with:  1
+total number of values:  1213378320
+percentage of clct < 0:
+0.12106505331329803
+percentage of clct > 100:
+0.0002657085549377543
+max clct:
+100.000786
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  1 and days starting with:  2
+total number of values:  1213378320
+percentage of clct < 0:
+0.10088001819580887
+percentage of clct > 100:
+0.0001907756189347441
+max clct:
+100.00076
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  1 and days starting with:  3
+total number of values:  242675664
+percentage of clct < 0:
+0.051751872408598826
+percentage of clct > 100:
+0.0008693619975013234
+max clct:
+100.000656
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  2 and days starting with:  0
+total number of values:  1092040488
+percentage of clct < 0:
+0.20566930848080425
+percentage of clct > 100:
+4.1041518599812205e-05
+max clct:
+100.00062
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  2 and days starting with:  1
+total number of values:  1213378320
+percentage of clct < 0:
+0.5375331990438069
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  2 and days starting with:  2
+total number of values:  1092040488
+percentage of clct < 0:
+0.4932644264742682
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  2 and days starting with:  3
+None
+For year:  2019 and month:  3 and days starting with:  0
+total number of values:  1092040488
+percentage of clct < 0:
+0.09228912490651171
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  3 and days starting with:  1
+total number of values:  1213378320
+percentage of clct < 0:
+0.2931377775070186
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  3 and days starting with:  2
+total number of values:  1213378320
+percentage of clct < 0:
+0.4478727862881216
+percentage of clct > 100:
+0.00011601905001895864
+max clct:
+100.000694
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  3 and days starting with:  3
+total number of values:  242675664
+percentage of clct < 0:
+0.1598983324508386
+percentage of clct > 100:
+0.000976068205998604
+max clct:
+100.00084
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  4 and days starting with:  0
+total number of values:  1092040488
+percentage of clct < 0:
+0.06554516136218569
+percentage of clct > 100:
+0.0001909233240810024
+max clct:
+100.00087
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  4 and days starting with:  1
+total number of values:  1213378320
+percentage of clct < 0:
+0.20042016409193794
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  4 and days starting with:  2
+total number of values:  1213378320
+percentage of clct < 0:
+0.08511540819354675
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  4 and days starting with:  3
+total number of values:  121337832
+percentage of clct < 0:
+0.22603838018137656
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  5 and days starting with:  0
+total number of values:  1092040488
+percentage of clct < 0:
+0.10368975074118314
+percentage of clct > 100:
+0.0003714816478489395
+max clct:
+100.00087
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  5 and days starting with:  1
+total number of values:  1213378320
+percentage of clct < 0:
+0.11940805073886601
+percentage of clct > 100:
+0.0001610800166596021
+max clct:
+100.00084
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  5 and days starting with:  2
+total number of values:  1213378320
+percentage of clct < 0:
+0.1058973807938154
+percentage of clct > 100:
+1.96723475329607e-05
+max clct:
+100.000145
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  5 and days starting with:  3
+total number of values:  242675664
+percentage of clct < 0:
+0.3714319825658332
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  6 and days starting with:  0
+total number of values:  1092040488
+percentage of clct < 0:
+0.20829752513718156
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  6 and days starting with:  1
+total number of values:  1213378320
+percentage of clct < 0:
+0.19539846896226068
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  6 and days starting with:  2
+total number of values:  1213378320
+percentage of clct < 0:
+0.4984780583519903
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  6 and days starting with:  3
+total number of values:  121337832
+percentage of clct < 0:
+0.22026719580748733
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  7 and days starting with:  0
+total number of values:  1092040488
+percentage of clct < 0:
+0.2769161622879316
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  7 and days starting with:  1
+total number of values:  1213378320
+percentage of clct < 0:
+0.23428748422009057
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  7 and days starting with:  2
+total number of values:  1213378320
+percentage of clct < 0:
+0.17302235299539553
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  7 and days starting with:  3
+total number of values:  242675664
+percentage of clct < 0:
+0.219955079632542
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  8 and days starting with:  0
+total number of values:  1092040488
+percentage of clct < 0:
+0.17350458621457265
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  8 and days starting with:  1
+total number of values:  1213378320
+percentage of clct < 0:
+0.17928798414660976
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  8 and days starting with:  2
+total number of values:  1213378320
+percentage of clct < 0:
+0.2690795027555791
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  8 and days starting with:  3
+total number of values:  242675664
+percentage of clct < 0:
+0.2627244938742601
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  9 and days starting with:  0
+total number of values:  1092040488
+percentage of clct < 0:
+0.20448906469482475
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  9 and days starting with:  1
+total number of values:  1152709404
+percentage of clct < 0:
+0.423481358186265
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  9 and days starting with:  2
+total number of values:  788695908
+percentage of clct < 0:
+0.1158112500312351
+percentage of clct > 100:
+0.0
+max clct:
+99.9999
+min clct:
+-9.999999e-05
+
+For year:  2019 and month:  9 and days starting with:  3
+None
+For year:  2019 and month:  10 and days starting with:  0
+None
+For year:  2019 and month:  10 and days starting with:  1
+None
+For year:  2019 and month:  10 and days starting with:  2
+None
+For year:  2019 and month:  10 and days starting with:  3
+None
+For year:  2019 and month:  11 and days starting with:  0
+None
+For year:  2019 and month:  11 and days starting with:  1
+None
+For year:  2019 and month:  11 and days starting with:  2
+None
+For year:  2019 and month:  11 and days starting with:  3
+None
+For year:  2019 and month:  12 and days starting with:  0
+None
+For year:  2019 and month:  12 and days starting with:  1
+None
+For year:  2019 and month:  12 and days starting with:  2
+None
+For year:  2019 and month:  12 and days starting with:  3
+None
