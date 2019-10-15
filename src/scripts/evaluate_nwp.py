@@ -25,15 +25,14 @@ yx_to_ll_df = clct_predictions.to_dataframe().reset_index(["time", "epsd_1"])[['
 yx_to_ll_dict = dict(zip(yx_to_ll_df.index.values, yx_to_ll_df.values))
 yx_to_ll_dict
 labels_dir = "../../local_data/labels"
-labels = xr.open_mfdataset(os.path.join(labels_dir,
-                                        "../../../../../mnt/ds3lab-scratch/bhendj/grids/CM-SAF/meteosat.CFC.H_ch05.latitude_longitude_201812*.nc"),
-                           combine='by_coords').CFC
+labels = xr.open_mfdataset(
+    "../../../../../mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_201812*.nc",
+    combine='by_coords').CFC
 labels
 errors = {"lat": [], "lon": [], "init_time": [], "time": [], "CRPS": []}
 init_time = pd.Timestamp(2018, 12, 25, 0)
 prediction_data = clct_predictions.values
 for idx_t in range(prediction_data.shape[0]):
-    eval_time = init_time + pd.Timedelta(hours=idx_t)
     print(datetime.datetime.now())
     print(idx_t)
     for idx_x in range(prediction_data.shape[1]):
@@ -49,7 +48,7 @@ for idx_t in range(prediction_data.shape[0]):
             errors["lat"].append(lat)
             errors["lon"].append(lon)
             errors["init_time"].append(init_time)
-            errors["time"].append(eval_time)
+            errors["time"].append(t)
             errors["CRPS"].append(error)
 
 f = open("errors2018122500.pkl", "wb")
