@@ -19,7 +19,7 @@ init_time = pd.Timestamp(init_time_str)
 
 with open(os.path.join(lookup_dir, "lookup_xy_ll.pkl"), "rb") as f:
     lookup_dict = pickle.load(f)
-nwp_file = os.path.join(labels_dir, "cosmo-e_" + init_time_str.replace(' ', '') + "_CLCT.nc")
+nwp_file = os.path.join(nwp_dir, "cosmo-e_" + init_time_str.replace(' ', '') + "_CLCT.nc")
 nwp = xr.open_mfdataset(nwp_file)
 x_1 = nwp.x_1.values
 y_1 = nwp.y_1.values
@@ -30,10 +30,14 @@ for h in range(121):
     labels_df = xr.open_mfdataset(os.path.join(
         labels_dir, "meteosat.CFC.H_ch05.latitude_longitude_" + timestring + ".nc")).to_dataframe()
     time = pd.Timestamp(timestring)
+    q = 0
+    tic = t.clock()
     for x, y in itertools.product(x_1, y_1):
-        tic = t.clock()
-        predictions = np.array([nwp.CLCT[h].to_dataframe().loc[(i, y, x), "CLCT"] for i in range(nwp.epsd_1.size)])  # bottleneck
-        print(t.clock() - t, "seconds")
+        q += 1
+        if q % 10 == 0:
+            toc = t.clock() - tic
+            print(toc, "of", toc * 23876 / q, "seconds elapsed")
+        predictions = np.array([nwp.CLCT[h, i].to_dataframe().loc[(y, x), "CLCT"] for i in range(nwp.epsd_1.size)])  # bottleneck
         lon_lat = lookup_dict[(x, y)]
         observation = labels_df.loc[(lon_lat[1], lon_lat[0], time), "CFC"]
         error = ps.crps_ensemble(observation, predictions)
