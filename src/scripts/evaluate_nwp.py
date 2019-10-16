@@ -6,6 +6,7 @@ import os
 import itertools
 import pickle
 import warnings
+import time as t
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=DeprecationWarning)
 
@@ -30,7 +31,9 @@ for h in range(121):
         labels_dir, "meteosat.CFC.H_ch05.latitude_longitude_" + timestring + ".nc")).to_dataframe()
     time = pd.Timestamp(timestring)
     for x, y in itertools.product(x_1, y_1):
+        tic = t.clock()
         predictions = np.array([nwp.CLCT[h].to_dataframe().loc[(i, y, x), "CLCT"] for i in range(nwp.epsd_1.size)])  # bottleneck
+        print(t.clock() - t, "seconds")
         lon_lat = lookup_dict[(x, y)]
         observation = labels_df.loc[(lon_lat[1], lon_lat[0], time), "CFC"]
         error = ps.crps_ensemble(observation, predictions)
