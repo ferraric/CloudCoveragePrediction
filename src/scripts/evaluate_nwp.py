@@ -10,10 +10,10 @@ import time as t
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=DeprecationWarning)
 
-save_dir = os.path.join("..", "local_playground")
+save_dir = os.path.join("~", "evaluation")
 init_time_str = "20180221 00"
-labels_dir = os.path.join("..", "local_playground")
-nwp_dir = os.path.join("..", "local_playground")
+labels_dir = os.path.join("/mnt", "ds3lab-scratch", "bhendj", "grids", "CM-SAF", "MeteosatCFC")
+nwp_dir = os.path.join("/mnt", "ds3lab-scratch", "bhendj", "grids", "cosmo", "cosmoe")
 lookup_dir = os.path.join("..", "..", "shared_data")
 init_time = pd.Timestamp(init_time_str)
 
