@@ -1,80 +1,88 @@
-def totuple(a):
-    try:
-        return tuple(totuple(i) for i in a)
-    except TypeError:
-        return a
 import numpy as np
 import pandas as pd
 import xarray as xr
 import properscoring as ps
-from typing import Tuple, Dict
-import os
+from typing import Tuple
 import pickle
-import datetime
 import time
+import itertools
+from nwp_preprocessing import transform_nwp_data
 
-with open('lookup_xy_ll.pkl', 'rb') as handle:
+with open('../../lookup_xy_ll.pkl', 'rb') as handle:
     label_map_dict_xy_ll = pickle.load(handle)
-label_map_dict_xy_ll
+with open('../../shared_data/yx_to_ll_dict.pkl', 'rb') as handle:
+    yx_to_ll_dict = pickle.load(handle)
 
 
 def findNearestLabelCoordinates(x_coord: float, y_coord: float) -> Tuple[float, float]:
     return label_map_dict_xy_ll[(x_coord, y_coord)]
 
 
+# opening all label files since they are small
+labels = xr.open_mfdataset(
+    "../../../../../mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_201[4-9]*.nc",
+    combine='by_coords').CFC
+longitudes_latitudes_labels = list(itertools.product(list(labels.lon.values), list(labels.lat.values)))
+
+# open arbitrary nwp clct file to obtain coordinates
 predictions = xr.open_mfdataset(
-    "cosmo-e_2018122500_CLCT.nc", combine='by_coords')
+    "../../../../../mnt/ds3lab-scratch/bhendj/grids/cosmo/cosmoe/cosmo-e_2018122500_CLCT.nc")
+predictions = transform_nwp_data(predictions)
 clct_predictions = predictions.CLCT
-clct_predictions
-yx_to_ll_df = clct_predictions.to_dataframe().reset_index(["time", "epsd_1"])[['lon_1', 'lat_1']]
-yx_to_ll_dict = dict(zip(yx_to_ll_df.index.values, yx_to_ll_df.values))
-yx_to_ll_dict
-labels = xr.open_mfdataset(os.path.join("meteosat.CFC.H_ch05.latitude_longitude_201812*.nc"),
-                           combine='by_coords').CFC
-labels
-errors = {"lat": [], "lon": [], "init_time": [], "time": [], "CRPS": []}
 prediction_data = clct_predictions.values
-init_time = pd.Timestamp(2018, 12, 25, 0)
-prediction_data = clct_predictions.values
-for idx_t in range(prediction_data.shape[0]):
-    #import time
-    start_time = time.time()
-    eval_time = init_time + pd.Timedelta(hours=idx_t)
-    print(datetime.datetime.now())
-    print(idx_t)
-    print(eval_time)
-    t = clct_predictions.time.values[idx_t]
-    x = clct_predictions.x_1.values
-    y = clct_predictions.y_1.values
-    a = np.repeat(x, y.shape[0], axis=0)
-    b=np.tile(y,x.shape[0]) 
-    result = np.vstack([b,a])
-    result=np.transpose(result)
-    tup_ind=totuple(result)
-    latlonarr = np.array([yx_to_ll_dict[(h,j)] for h,j in tup_ind ])
-    lon=latlonarr[:,0]
-    lat=latlonarr[:,1]
-    res2 = np.vstack([a,b])
-    res2=totuple(np.transpose(res2))
-    nearestLabelCoordinates = [findNearestLabelCoordinates(x, y) for (x,y) in res2]
-    nearestLabelCoordinates =np.array(nearestLabelCoordinates)
-    labelValue = labels.sel(lat=nearestLabelCoordinates[:,1], lon=nearestLabelCoordinates[:,0], time=t).values
-    labelValue=np.diag(labelValue)
-    idx_y=list(range(0,prediction_data.shape[3]))
-    idx_x=list(range(0,prediction_data.shape[2]))
-    idy=np.repeat(idx_y,np.shape(idx_x)[0])
-    idx=np.tile(idx_x,np.shape(idx_y)[0])
-    predictedValues = prediction_data[idx_t, :,idx, idy]
-    err = ps.crps_ensemble(labelValue, predictedValues)
-    #print(predictedValues.shape)
-    #error = ps.crps_ensemble(labelValue, predictedValues)
-    #errors["lat"].append(lat)
-    #errors["lon"].append(lon)
-    #errors["init_time"].append(init_time)
-    #errors["time"].append(eval_time)
-    #errors["CRPS"].append(error)
-    print("--- %s seconds ---" % (time.time() - start_time))
-    #break
-#f = open("errors2018122500.pkl", "wb")
-#pickle.dump(errors, f)
-#f.close()
+x_coordinates = clct_predictions.x_1.values
+y_coordinates = clct_predictions.y_1.values
+x_coordinates_for_each_grid_point = np.repeat(x_coordinates, y_coordinates.shape[0], axis=0)
+y_coordinates_for_each_grid_point = np.tile(y_coordinates, x_coordinates.shape[0])
+yx_coordinates_for_each_grid_point = np.vstack([y_coordinates_for_each_grid_point, x_coordinates_for_each_grid_point])
+yx_coordinates_for_each_grid_point = np.transpose(yx_coordinates_for_each_grid_point)
+latlonarr = np.array([yx_to_ll_dict[(y, x)] for y, x in yx_coordinates_for_each_grid_point])
+lon_array = latlonarr[:, 0]
+lat_array = latlonarr[:, 1]
+nearestLabelCoordinates = [findNearestLabelCoordinates(x, y) for (y, x) in yx_coordinates_for_each_grid_point]
+nearestLabelCoordinates = np.array(nearestLabelCoordinates)
+idx_y = list(range(0, prediction_data.shape[3]))
+idx_x = list(range(0, prediction_data.shape[2]))
+idx_y_for_each_grid_point = np.repeat(idx_y, np.shape(idx_x)[0])
+idx_x_for_each_grid_point = np.tile(idx_x, np.shape(idx_y)[0])
+
+init_time = pd.Timestamp(2017, 11, 1, 0)
+end_date = pd.Timestamp(2017, 11, 2, 0)  # pd.Timestamp(2018, 12, 31, 12)
+time_step = pd.Timedelta(hours=12)
+while init_time <= end_date:
+    print("initialization time: ", init_time.strftime("%Y-%m-%d-%H"))
+    init_time += time_step
+
+    predictions = xr.open_mfdataset("../../../../../mnt/ds3lab-scratch/bhendj/grids/cosmo/cosmoe/cosmo-e_" +
+                                    init_time.strftime("%Y%m%d%H") + "_CLCT.nc")
+    predictions = transform_nwp_data(predictions)
+    clct_predictions = predictions.CLCT
+    prediction_data = clct_predictions.values
+
+    errors = {"lat": [], "lon": [], "init_time": [], "time": [], "CRPS": []}
+
+    for idx_t in range(prediction_data.shape[0]):
+        start_timer = time.time()
+        eval_time = init_time + pd.Timedelta(hours=idx_t)
+        print(idx_t)
+        t = clct_predictions.time.values[idx_t]
+        all_labels_values = list(labels.sel(time=t).values.flatten(order='F'))
+        label_coord_to_value_dict = dict(zip(longitudes_latitudes_labels, all_labels_values))
+
+        label_values_for_nwp_grid_points = np.zeros(nearestLabelCoordinates.shape[0])
+        i = 0
+        for lon_n, lat_n in nearestLabelCoordinates:
+            label_values_for_nwp_grid_points[i] = label_coord_to_value_dict[(lon_n, lat_n)]
+            i += 1
+        predicted_values = prediction_data[idx_t, :, idx_x_for_each_grid_point, idx_y_for_each_grid_point]
+        crps_scores = ps.crps_ensemble(label_values_for_nwp_grid_points, predicted_values)
+        assert (crps_scores.shape == lat_array.shape and crps_scores.shape == lon_array.shape)
+        errors["lat"].append(lat_array)
+        errors["lon"].append(lon_array)
+        errors["init_time"].append(np.repeat(init_time, crps_scores.shape[0]))
+        errors["time"].append(np.repeat(eval_time, crps_scores.shape[0]))
+        errors["CRPS"].append(crps_scores)
+        f = open("nwp_crps_scores" + init_time.strftime("%Y-%m-%d-%H") + ".pkl", "wb")
+        pickle.dump(errors, f)
+        f.close()
+        print("--- %s seconds ---" % (time.time() - start_timer))
