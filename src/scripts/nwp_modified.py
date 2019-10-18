@@ -6,9 +6,11 @@ from typing import Tuple
 import pickle
 import time
 import itertools
+import sys
+sys.path.append('../preprocessing/')
 from nwp_preprocessing import transform_nwp_data
 
-with open('../../lookup_xy_ll.pkl', 'rb') as handle:
+with open('../../shared_data/lookup_xy_ll.pkl', 'rb') as handle:
     label_map_dict_xy_ll = pickle.load(handle)
 with open('../../shared_data/yx_to_ll_dict.pkl', 'rb') as handle:
     yx_to_ll_dict = pickle.load(handle)
@@ -20,7 +22,7 @@ def findNearestLabelCoordinates(x_coord: float, y_coord: float) -> Tuple[float, 
 
 # opening all label files since they are small
 labels = xr.open_mfdataset(
-    "../../../../../mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_201[4-9]*.nc",
+    "../../../../../mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_2018*.nc",
     combine='by_coords').CFC
 longitudes_latitudes_labels = list(itertools.product(list(labels.lon.values), list(labels.lat.values)))
 
@@ -46,8 +48,8 @@ idx_x = list(range(0, prediction_data.shape[2]))
 idx_y_for_each_grid_point = np.repeat(idx_y, np.shape(idx_x)[0])
 idx_x_for_each_grid_point = np.tile(idx_x, np.shape(idx_y)[0])
 
-init_time = pd.Timestamp(2017, 11, 1, 0)
-end_date = pd.Timestamp(2017, 11, 2, 0)  # pd.Timestamp(2018, 12, 31, 12)
+init_time = pd.Timestamp(2018, 1, 1, 0)
+end_date = pd.Timestamp(2018, 12, 31, 12)  # pd.Timestamp(2018, 12, 31, 12)
 time_step = pd.Timedelta(hours=12)
 while init_time <= end_date:
     print("initialization time: ", init_time.strftime("%Y-%m-%d-%H"))
