@@ -9,11 +9,12 @@ import calendar
 
 def main():
     max_quantiles = 21
-    years = ['2014','2015','2016','2017','2018']#initialize all years
+    years = ['2018']#'2015','2016','2017','2018']#initialize all years
     prohibited_window_size=10  #number of days before and after current date to be ignored
-    months = ['1', '2', '3', '4', '5','6','7','8','9','10','11','12']#initialize all months
+    months = ['1','2', '3', '4', '5','6']#,
+    #months=['7','8','9','10','11','12']#initialize all months
     window=1
-    hours = ['00']#'01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'];#not written in usual form for regexp construction
+    hours = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']#not written in usual form for regexp construction
     data_path="/mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_"#define path of data
     results_path= "results_test/"#define path to save results
     for y in years:
@@ -23,8 +24,8 @@ def main():
                 for hour in hours:
                     cb_obj=ClimateBase(int(y),int(m),int(day),int(hour),window)
                     hourstr = hour + "0000.nc" #construct file path for hour
-                    ten_days_earlier=cb_obj.add_days(prohibited_window_size)
-                    ten_days_after=cb_obj.subtract_days(prohibited_window_size)
+                    ten_days_after=cb_obj.add_days(prohibited_window_size)
+                    ten_days_earlier=cb_obj.subtract_days(prohibited_window_size)
                     prohibited_list=cb_obj.get_all_days_between_dates(ten_days_earlier, ten_days_after)
                     cb_obj.initialize_window()
                     months_to_avg =cb_obj.window_dict[m]
@@ -40,6 +41,8 @@ def main():
                         all_days=cb_obj.startwith_normal(start_month,end_month)
                     #print(all_days)
                     filtered_days = list(set(all_days) - set(prohibited_list))# filter out the dates 10 days before and after
+                    print((int(y),int(m),int(day)) in set(filtered_days))
+                    #print(prohibited_list)
                     #print(filtered_days)
                     CFC_values=[]
                     for correct_day in filtered_days:#mainly to construct file name and read file
@@ -53,6 +56,7 @@ def main():
                             #print(dpath)
                             lat = dat["lat"].values
                             lon = dat["lon"].values
+                            #latlon_comb=list(itertools.product(list(lat),list(lon)))
                     out= np.array(CFC_values)
                     actpath =cb_obj.get_date_path(data_path,[int(y),int(m),int(day)],hourstr)
                     dat_act = xr.open_dataset(actpath)
@@ -69,7 +73,8 @@ def main():
                         out =cb_obj.return_quantiles(out, max_quantiles)
                         CRPS = ps.crps_ensemble(actual, np.transpose(out))
                         result_dict = {}
-                        result_dict["lat"] = lat
+                        #result_dict["latloncomb"] = latlon_comb
+                        result_dict["lat"]=lat
                         result_dict["lon"] = lon
                         result_dict["CRPS"] = CRPS
                         result_dict["FULL_OUTPUT"] = out
@@ -78,7 +83,6 @@ def main():
                         path =results_path+ result_dict["time"].strftime('%Y%m%d%H') + ".pkl"#full result path
                         with open(path, 'wb') as f:
                             pickle.dump(result_dict, f)
-
 
 
 
