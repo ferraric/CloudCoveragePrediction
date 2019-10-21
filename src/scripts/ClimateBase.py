@@ -53,7 +53,7 @@ class ClimateBase:
         return window2
     def get_window3(self):
         window3 = {}
-        window3["12"] = [1,11,12]
+        window3["12"] = [10,11,12]
         window3["1"] = [11,12,1]
         window3["2"] = [12,1,2]
         window3["3"] = [1,2,3]
