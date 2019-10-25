@@ -8,7 +8,9 @@ import time
 import itertools
 import os
 import sys
+import warnings
 sys.path.append('../preprocessing/')
+warnings.simplefilter(action='ignore', category=FutureWarning)
 from nwp_preprocessing import transform_nwp_data
 
 with open('../../shared_data/lookup_xy_ll.pkl', 'rb') as handle:
@@ -22,13 +24,13 @@ def findNearestLabelCoordinates(x_coord: float, y_coord: float) -> Tuple[float, 
 
 # opening all label files since they are small
 labels = xr.open_mfdataset(
-    "../../../../../mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_201406*.nc",
+    "/mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_201[712,801]*.nc",
     combine='by_coords').CFC
 longitudes_latitudes_labels = list(itertools.product(list(labels.lon.values), list(labels.lat.values)))
 
 # open arbitrary nwp clct file to obtain coordinates
 predictions = xr.open_mfdataset(
-    "../../../../../mnt/ds3lab-scratch/bhendj/grids/cosmo/cosmoe/cosmo-e_2018122500_CLCT.nc")
+    "/mnt/ds3lab-scratch/bhendj/grids/cosmo/cosmoe/cosmo-e_2018122500_CLCT.nc")
 predictions = transform_nwp_data(predictions)
 clct_predictions = predictions.CLCT
 prediction_data = clct_predictions.values
@@ -48,36 +50,37 @@ idx_x = list(range(0, prediction_data.shape[2]))
 idx_y_for_each_grid_point = np.repeat(idx_y, np.shape(idx_x)[0])
 idx_x_for_each_grid_point = np.tile(idx_x, np.shape(idx_y)[0])
 
-start_date = pd.Timestamp(2014, 6, 1, 0)
-end_date = pd.Timestamp(2014, 6, 11, 12)  # pd.Timestamp(2018, 12, 31, 12)
+start_date = pd.Timestamp(2017, 12, 24, 0)
+end_date = pd.Timestamp(2017, 12, 31, 12)  # pd.Timestamp(2018, 12, 31, 12)
 time_step = pd.Timedelta(hours=12)
 init_time = start_date
 missing_dates = []
 while init_time <= end_date:
-    print("initialization time: ", init_time.strftime("%Y-%m-%d-%H"))
+    #print("initialization time: ", init_time.strftime("%Y-%m-%d-%H"))
     
-    if os.path.exists("nwp_crps_scores" + init_time.strftime("%Y-%m-%d-%H") + ".pkl"):
+    if os.path.exists("~/evaluation/nwp_biases" + init_time.strftime("%Y-%m-%d-%H") + ".pkl"):
         print("file already exists, skipping to next initialization time")
         init_time += time_step
         continue
     
     try:
        # TOOD: test if preprocess option works as expected  
-        predictions = xr.open_mfdataset("../../../../../mnt/ds3lab-scratch/bhendj/grids/cosmo/cosmoe/cosmo-e_*" +
+        predictions = xr.open_mfdataset("/mnt/ds3lab-scratch/bhendj/grids/cosmo/cosmoe/cosmo-e_*" +
                                         init_time.strftime("%Y%m%d%H") + "*_CLCT.nc", preprocess=transform_nwp_data)
         clct_predictions = predictions.CLCT
         prediction_data = clct_predictions.values
     except:
         missing_dates.append(init_time)
+        print(init_time, "is missing")
         init_time += time_step
         continue
 
-    errors = {"lat": [], "lon": [], "init_time": [], "time": [], "CRPS": []}
+    biases = {"lat": [], "lon": [], "init_time": [], "time": [], "bias": []}
 
     for idx_t in range(prediction_data.shape[0]):
         start_timer = time.time()
         eval_time = init_time + pd.Timedelta(hours=idx_t)
-        print(idx_t)
+        #print(idx_t)
         t = clct_predictions.time.values[idx_t]
         all_labels_values = list(labels.sel(time=t).values.flatten(order='F'))
         label_coord_to_value_dict = dict(zip(longitudes_latitudes_labels, all_labels_values))
@@ -87,21 +90,23 @@ while init_time <= end_date:
         for lon_n, lat_n in nearestLabelCoordinates:
             label_values_for_nwp_grid_points[i] = label_coord_to_value_dict[(lon_n, lat_n)]
             i += 1
-        predicted_values = prediction_data[idx_t, :, idx_x_for_each_grid_point, idx_y_for_each_grid_point]
-        crps_scores = ps.crps_ensemble(label_values_for_nwp_grid_points, predicted_values)
-        assert (crps_scores.shape == lat_array.shape and crps_scores.shape == lon_array.shape)
-        errors["lat"].append(lat_array)
-        errors["lon"].append(lon_array)
-        errors["init_time"].append(np.repeat(init_time, crps_scores.shape[0]))
-        errors["time"].append(np.repeat(eval_time, crps_scores.shape[0]))
-        errors["CRPS"].append(crps_scores)
-        print("--- %s seconds ---" % (time.time() - start_timer))
-    f = open("nwp_crps_scores" + init_time.strftime("%Y-%m-%d-%H") + ".pkl", "wb")
-    pickle.dump(errors, f)
-    f.close()    
+        mean_predicted_values = np.mean(prediction_data[idx_t, :, idx_x_for_each_grid_point, idx_y_for_each_grid_point], axis=1)
+        assert len(mean_predicted_values) == len(label_values_for_nwp_grid_points)
+        length = len(mean_predicted_values)
+        bias = mean_predicted_values - label_values_for_nwp_grid_points
+        biases["lat"].extend(lat_array)
+        biases["lon"].extend(lon_array)
+        biases["init_time"].extend(np.repeat(init_time, length))
+        biases["time"].extend(np.repeat(eval_time, length))
+        biases["bias"].extend(bias)
+        # print("--- %s seconds ---" % (time.time() - start_timer))
+    df = pd.DataFrame(biases).set_index(["lat", "lon", "init_time", "time"])
+    save_file = "~/evaluation/nwp_biases" + init_time.strftime("%Y-%m-%d-%H") + ".pkl"
+    df.to_pickle(save_file)
+    print("Saved to", save_file)
     init_time += time_step
 
-f = open("missing_dates" + start_date.strftime("%Y-%m-%d-%H")+ "_to_" + end_date.strftime("%Y-%m-%d-%H") + ".pkl", "wb")
-pickle.dump(missing_dates, f)
-f.close()
+#f = open("missing_dates" + start_date.strftime("%Y-%m-%d-%H")+ "_to_" + end_date.strftime("%Y-%m-%d-%H") + ".pkl", "wb")
+#pickle.dump(missing_dates, f)
+#f.close()
 
