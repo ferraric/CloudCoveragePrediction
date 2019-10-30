@@ -1,6 +1,9 @@
 # IPython notebook
 *.ipynb_checkpoints
 
-local_data/*
-src/local_playground/*
+local/local_data/*
+local/local_playground/*
 .DS_Store
+experiments/*
+*__pycache__*
+.idea/*
