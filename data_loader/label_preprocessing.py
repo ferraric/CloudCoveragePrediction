@@ -21,7 +21,7 @@ def map_to_nwp_grid(data: xr.core.dataset.Dataset, nwp_example: xr.core.dataset.
 
     transformed_labels = nwp_example.copy(deep=True)
     desired_shape = transformed_labels.CLCT.values.shape
-    transformed_labels.values = np.zeros(desired_shape)
+    transformed_labels.CLCT.values = np.zeros(desired_shape)
 
     x_coordinates = transformed_labels.CLCT.x_1.values
     y_coordinates = transformed_labels.CLCT.y_1.values
