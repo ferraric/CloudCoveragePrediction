@@ -20,11 +20,11 @@ def map_to_nwp_grid(data: xr.core.dataset.Dataset, nwp_example: xr.core.dataset.
     print(data)
 
     transformed_labels = nwp_example.copy(deep=True)
-    desired_shape = transformed_labels.values.shape
+    desired_shape = transformed_labels.CLCT.values.shape
     transformed_labels.values = np.zeros(desired_shape)
 
-    x_coordinates = transformed_labels.x_1.values
-    y_coordinates = transformed_labels.y_1.values
+    x_coordinates = transformed_labels.CLCT.x_1.values
+    y_coordinates = transformed_labels.CLCT.y_1.values
     x_coordinates_for_each_grid_point = np.repeat(x_coordinates, y_coordinates.shape[0], axis=0)
     y_coordinates_for_each_grid_point = np.tile(y_coordinates, x_coordinates.shape[0])
     yx_coordinates_for_each_grid_point = np.vstack(
@@ -38,7 +38,7 @@ def map_to_nwp_grid(data: xr.core.dataset.Dataset, nwp_example: xr.core.dataset.
     label_coord_to_value_dict = dict(zip(longitudes_latitudes_labels, all_labels_values))
     new_label_values = np.reshape(
         np.array([label_coord_to_value_dict[(lon, lat)] for (lon, lat) in nearestLabelCoordinates]), desired_shape)
-    transformed_labels.values = new_label_values
+    transformed_labels.CLCT.values = new_label_values
     res = transformed_labels.expand_dims(dim='time').assign_coords(time=data.time.values)
     print(res)
     return res
