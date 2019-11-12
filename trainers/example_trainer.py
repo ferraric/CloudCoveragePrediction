@@ -24,7 +24,7 @@ class ExampleTrainer(BaseTrain):
 
     def train_epoch(self):
         for step, (x_batch, y_batch) in enumerate(self.data.train_data):
-            if step % self.config.validate_every_x_batches == 0:
+            if (step % self.config.validate_every_x_batches == 0) and (step != 0):
                 self.validation_step()
 
             self.train_step(x_batch, y_batch)

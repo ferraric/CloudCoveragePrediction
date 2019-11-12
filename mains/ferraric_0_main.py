@@ -1,6 +1,7 @@
 from comet_ml import Experiment
 import json
 import os
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 import random
 import sys
 import numpy as np
