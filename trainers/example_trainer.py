@@ -61,6 +61,7 @@ class ExampleTrainer(BaseTrain):
             self.comet_logger.log_metric(
                 "average_loss", self.validation_loss.result(), step=self.optimizer.iterations
             )
+            #print("validation metric: ", self.comet_logger._summary['metric']['test_average_loss'])
 
             if self.validation_loss.result() < self.best_loss:
                 self.best_loss = self.validation_loss.result()

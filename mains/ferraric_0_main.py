@@ -9,6 +9,7 @@ sys.path.append('../')
 
 from data_loader.ferraric_0_data_loader import DataGenerator
 from models.ferraric_0_model import CNNModel
+from models.ferraric_1_model import LocalModel, SimpleModel
 from trainers.example_trainer import ExampleTrainer
 from utils.config import process_config
 from utils.dirs import create_dirs
@@ -52,7 +53,7 @@ def main():
 
     data = DataGenerator(config, experiment)
 
-    dummy_model = CNNModel(config)
+    dummy_model = SimpleModel(config)
     iterator = iter(data.train_data)
     dummy_inputs, _ = next(iterator)
     dummy_model(dummy_inputs)
@@ -66,7 +67,7 @@ def main():
     #data_input_shape = next(iter(data.train_data))[0].shape
     #model.log_model_architecture_to(experiment, data_input_shape)
 
-    model = CNNModel(config)
+    model = SimpleModel(config)
     trainer = ExampleTrainer(model, data, config, experiment)
     trainer.train()
 

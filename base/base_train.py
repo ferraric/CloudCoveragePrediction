@@ -17,6 +17,7 @@ class BaseTrain:
 
     def train(self):
         for cur_epoch in range(self.config.num_epochs):
+            print("epoch number: ", cur_epoch)
             self.current_epoch = cur_epoch
             self.train_epoch()
 
