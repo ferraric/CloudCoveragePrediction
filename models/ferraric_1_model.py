@@ -11,8 +11,8 @@ class SimpleModel(Model):
         self.build_model()
 
     def build_model(self):
-        self.w1 = tf.Variable(tf.ones(shape=[90, 59, 121]));
-        self.b1 = tf.Variable(tf.random.normal(shape=[90, 59, 121]));
+        self.w1 = tf.Variable(tf.random.normal(shape=[90, 59, 121,2], mean=1.0));
+        self.b1 = tf.Variable(tf.random.normal(shape=[90, 59, 121,2]));
 
     def call(self, x):
         return tf.math.add(tf.math.multiply(self.w1, x), self.b1)
