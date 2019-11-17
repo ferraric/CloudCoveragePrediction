@@ -3,6 +3,7 @@ import tensorflow as tf
 from tensorflow.keras.losses import Loss
 
 class CrpsNormLoss(Loss):
+    EPS = 0.0001
     # TODO: type annotations
     def call(self, y_true, y_pred):
         """Compute the CRPS cost function for a normal distribution defined by
@@ -14,15 +15,18 @@ class CrpsNormLoss(Loss):
             Returns:
                 mean_crps: Scalar with mean CRPS over batch
             """
+        # TODO: refactor this
+        y_true = tf.reshape(y_true, [-1,2])
+        y_pred = tf.reshape(y_pred, [-1, 2])
 
         mu = y_pred[:, 0]
         var = y_pred[:, 1]
 
-        # TODO: check if needed
         y_true = y_true[:, 0]  # Need to also get rid of axis 1 to match!
 
         # since model might predict negative var
         var = tf.math.abs(var)
+        var = tf.clip_by_value(var, clip_value_min=self.EPS, clip_value_max=np.inf)
 
         # The following three variables are just for convenience
         loc = (y_true - mu) / tf.math.sqrt(var)

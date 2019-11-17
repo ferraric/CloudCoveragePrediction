@@ -12,6 +12,7 @@ from models.ferraric_0_model import CNNModel
 from models.ferraric_1_model import LocalModel, SimpleModel
 from models.identity_model import IdentityModel
 from trainers.example_trainer import ExampleTrainer
+from trainers.crps_trainer import CRPSTrainer
 from utils.config import process_config
 from utils.dirs import create_dirs
 from utils.arg import get_args
@@ -54,7 +55,7 @@ def main():
 
     data = DataGenerator(config, experiment)
 
-    dummy_model = IdentityModel(config)
+    dummy_model = SimpleModel(config)
     iterator = iter(data.train_data)
     dummy_inputs, _ = next(iterator)
     dummy_model(dummy_inputs)
@@ -68,8 +69,8 @@ def main():
     #data_input_shape = next(iter(data.train_data))[0].shape
     #model.log_model_architecture_to(experiment, data_input_shape)
 
-    model = IdentityModel(config)
-    trainer = ExampleTrainer(model, data, config, experiment)
+    model = SimpleModel(config)
+    trainer = CRPSTrainer(model, data, config, experiment)
     trainer.train()
 
 
