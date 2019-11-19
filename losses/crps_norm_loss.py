@@ -20,7 +20,6 @@ class CrpsNormLoss(Loss):
         y_pred = tf.reshape(y_pred, [-1, 2])
 
         mu = y_pred[:, 0]
-        mu = tf.clip_by_value(mu, clip_value_min=0, clip_value_max=100)
         var = y_pred[:, 1]
 
         y_true = y_true[:, 0]  # Need to also get rid of axis 1 to match!

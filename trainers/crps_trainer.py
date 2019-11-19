@@ -16,6 +16,10 @@ class CRPSTrainer(BaseTrain):
         self.comet_logger = comet_logger
         self.setup_metrics()
 
+    def train(self):
+        super().train()
+        self.evaluate_ensemble_crps()
+
     def setup_metrics(self):
         self.loss_object = CrpsNormLoss()
         self.ensemble_loss = CrpsEnsembleLoss()
@@ -60,17 +64,13 @@ class CRPSTrainer(BaseTrain):
             for (x_batch, y_batch) in self.data.validation_data:
                 predictions = self.model(x_batch)
                 loss = self.loss_object(y_batch, predictions)
-                ensemble_loss = self.ensemble_loss(y_batch, predictions)
 
                 self.validation_loss(loss)
-                self.validation_ensemble_loss(ensemble_loss)
 
             self.comet_logger.log_metric(
                 "average_loss", self.validation_loss.result(), step=self.optimizer.iterations
             )
-            self.comet_logger.log_metrix(
-                "ensemble_loss", self.validation_ensemble_loss.result(), step=self.optimizer.iterations
-            )
+
 
             if self.validation_loss.result() < self.best_loss:
                 self.best_loss = self.validation_loss.result()
@@ -79,6 +79,16 @@ class CRPSTrainer(BaseTrain):
                 for f in model_files:
                     os.remove(f)
 
+    def evaluate_ensemble_crps(self):
+        with self.comet_logger.test():
+            for (x_batch, y_batch) in self.data.validation_data:
+                predictions = self.model(x_batch)
+                ensemble_loss = self.ensemble_loss(y_batch, predictions)
+                self.validation_ensemble_loss(ensemble_loss)
+
+            self.comet_logger.log_metric(
+                "ensemble_loss", self.validation_ensemble_loss.result(), step=self.optimizer.iterations
+            )
 
     def save_model(self):
         tf.saved_model.save(
