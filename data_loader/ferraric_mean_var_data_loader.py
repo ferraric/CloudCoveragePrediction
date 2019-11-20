@@ -52,8 +52,6 @@ class DataGenerator:
         val_cutoff = '2014-03-01'
         assert pd.Timestamp(val_cutoff) < pd.Timestamp(cutoff_date)
         nwp_train = nwp.sel(init_time=slice('2014-02-01',val_cutoff))
-        nwp_val = nwp.sel(init_time=slice(val_cutoff,cutoff_date))
-
         train_values_mean_correct_shape = np.swapaxes(nwp_train.CLCT_mean.values, 1, 3)
         train_values_var_correct_shape = np.swapaxes(nwp_train.CLCT_var.values, 1, 3)
         train_labels_correct_shape = np.swapaxes(nwp_train.labelValue.values, 1, 3)
@@ -75,19 +73,89 @@ class DataGenerator:
         )
         self.train_data = self.train_data.batch(self.config.batch_size)
 
-        val_values_mean_correct_shape = np.swapaxes(nwp_val.CLCT_mean.values, 1, 3)
-        val_values_var_correct_shape = np.swapaxes(nwp_val.CLCT_var.values, 1, 3)
-        val_labels_correct_shape = np.swapaxes(nwp_val.labelValue.values, 1, 3)
-        self.comet_logger.log_other("validation size before removing nan", val_values_mean_correct_shape.shape)
+        nwp_val = nwp.sel(init_time=slice(val_cutoff,cutoff_date))
+        nwp_val_win = nwp_val.sel(init_time=nwp_val['init_time.season'] == 'DJF')
+        nwp_val_spr = nwp_val.sel(init_time=nwp_val['init_time.season'] == 'MAM')
+        nwp_val_sum = nwp_val.sel(init_time=nwp_val['init_time.season'] == 'JJA')
+        nwp_val_fal = nwp_val.sel(init_time=nwp_val['init_time.season'] == 'SON')
 
-        nan_indices = np.any(np.isnan(val_labels_correct_shape), axis=(1, 2, 3))
-        nan_it_indices = np.unique(np.argwhere(np.isnan(val_labels_correct_shape))[:, 0])
+        # split this by 4 seasons
+        # winter
+        val_values_win_mean_correct_shape = np.swapaxes(nwp_val_win.CLCT_mean.values, 1, 3)
+        val_values_win_var_correct_shape = np.swapaxes(nwp_val_win.CLCT_var.values, 1, 3)
+        val_labels_win_correct_shape = np.swapaxes(nwp_val_win.labelValue.values, 1, 3)
+        self.comet_logger.log_other("validation size winter before removing nan", val_values_win_mean_correct_shape.shape)
+
+        nan_indices = np.any(np.isnan(val_labels_win_correct_shape), axis=(1, 2, 3))
+        nan_it_indices = np.unique(np.argwhere(np.isnan(val_labels_win_correct_shape))[:, 0])
         print(nan_it_indices)
-        val_values_mean_correct_shape = val_values_mean_correct_shape[~nan_indices, :, :, :]
-        val_values_var_correct_shape = val_values_var_correct_shape[~nan_indices, :, :, :]
-        val_labels_correct_shape = val_labels_correct_shape[~nan_indices, :, :, :]
-        self.comet_logger.log_other("validation size after removing nan", val_values_mean_correct_shape.shape)
+        val_values_win_mean_correct_shape = val_values_win_mean_correct_shape[~nan_indices, :, :, :]
+        val_values_win_var_correct_shape = val_values_win_var_correct_shape[~nan_indices, :, :, :]
+        val_labels_win_correct_shape = val_labels_win_correct_shape[~nan_indices, :, :, :]
+        self.comet_logger.log_other("validation size winter after removing nan", val_values_win_mean_correct_shape.shape)
 
-        self.validation_data = tf.data.Dataset.from_tensor_slices((np.stack([val_values_mean_correct_shape, val_values_var_correct_shape], axis=-1),
-                                                                   np.stack([val_labels_correct_shape, np.zeros_like(val_labels_correct_shape)], axis=-1)))
-        self.validation_data = self.validation_data.batch(self.config.batch_size)
+        self.validation_data_win = tf.data.Dataset.from_tensor_slices(
+            (np.stack([val_values_win_mean_correct_shape, val_values_win_var_correct_shape], axis=-1),
+             np.stack([val_labels_win_correct_shape, np.zeros_like(val_labels_win_correct_shape)], axis=-1)))
+        self.validation_data_win = self.validation_data_win.batch(self.config.batch_size)
+
+        # spring
+        val_values_spr_mean_correct_shape = np.swapaxes(nwp_val_spr.CLCT_mean.values, 1, 3)
+        val_values_spr_var_correct_shape = np.swapaxes(nwp_val_spr.CLCT_var.values, 1, 3)
+        val_labels_spr_correct_shape = np.swapaxes(nwp_val_spr.labelValue.values, 1, 3)
+        self.comet_logger.log_other("validation size spring before removing nan", val_values_spr_mean_correct_shape.shape)
+
+        nan_indices = np.any(np.isnan(val_labels_spr_correct_shape), axis=(1, 2, 3))
+        nan_it_indices = np.unique(np.argwhere(np.isnan(val_labels_spr_correct_shape))[:, 0])
+        print(nan_it_indices)
+        val_values_spr_mean_correct_shape = val_values_spr_mean_correct_shape[~nan_indices, :, :, :]
+        val_values_spr_var_correct_shape = val_values_spr_var_correct_shape[~nan_indices, :, :, :]
+        val_labels_spr_correct_shape = val_labels_spr_correct_shape[~nan_indices, :, :, :]
+        self.comet_logger.log_other("validation size spring after removing nan", val_values_spr_mean_correct_shape.shape)
+
+        self.validation_data_spr = tf.data.Dataset.from_tensor_slices(
+            (np.stack([val_values_spr_mean_correct_shape, val_values_spr_var_correct_shape], axis=-1),
+             np.stack([val_labels_spr_correct_shape, np.zeros_like(val_labels_spr_correct_shape)], axis=-1)))
+        self.validation_data_spr = self.validation_data_spr.batch(self.config.batch_size)
+
+        # summer
+        val_values_sum_mean_correct_shape = np.swapaxes(nwp_val_sum.CLCT_mean.values, 1, 3)
+        val_values_sum_var_correct_shape = np.swapaxes(nwp_val_sum.CLCT_var.values, 1, 3)
+        val_labels_sum_correct_shape = np.swapaxes(nwp_val_sum.labelValue.values, 1, 3)
+        self.comet_logger.log_other("validation size summer before removing nan",
+                                    val_values_sum_mean_correct_shape.shape)
+
+        nan_indices = np.any(np.isnan(val_labels_sum_correct_shape), axis=(1, 2, 3))
+        nan_it_indices = np.unique(np.argwhere(np.isnan(val_labels_sum_correct_shape))[:, 0])
+        print(nan_it_indices)
+        val_values_sum_mean_correct_shape = val_values_sum_mean_correct_shape[~nan_indices, :, :, :]
+        val_values_sum_var_correct_shape = val_values_sum_var_correct_shape[~nan_indices, :, :, :]
+        val_labels_sum_correct_shape = val_labels_sum_correct_shape[~nan_indices, :, :, :]
+        self.comet_logger.log_other("validation size summer after removing nan",
+                                    val_values_sum_mean_correct_shape.shape)
+
+        self.validation_data_sum = tf.data.Dataset.from_tensor_slices(
+            (np.stack([val_values_sum_mean_correct_shape, val_values_sum_var_correct_shape], axis=-1),
+             np.stack([val_labels_sum_correct_shape, np.zeros_like(val_labels_sum_correct_shape)], axis=-1)))
+        self.validation_data_sum = self.validation_data_sum.batch(self.config.batch_size)
+
+        # fall
+        val_values_fal_mean_correct_shape = np.swapaxes(nwp_val_fal.CLCT_mean.values, 1, 3)
+        val_values_fal_var_correct_shape = np.swapaxes(nwp_val_fal.CLCT_var.values, 1, 3)
+        val_labels_fal_correct_shape = np.swapaxes(nwp_val_fal.labelValue.values, 1, 3)
+        self.comet_logger.log_other("validation size fall before removing nan",
+                                    val_values_fal_mean_correct_shape.shape)
+
+        nan_indices = np.any(np.isnan(val_labels_fal_correct_shape), axis=(1, 2, 3))
+        nan_it_indices = np.unique(np.argwhere(np.isnan(val_labels_fal_correct_shape))[:, 0])
+        print(nan_it_indices)
+        val_values_fal_mean_correct_shape = val_values_fal_mean_correct_shape[~nan_indices, :, :, :]
+        val_values_fal_var_correct_shape = val_values_fal_var_correct_shape[~nan_indices, :, :, :]
+        val_labels_fal_correct_shape = val_labels_fal_correct_shape[~nan_indices, :, :, :]
+        self.comet_logger.log_other("validation size fall after removing nan",
+                                    val_values_fal_mean_correct_shape.shape)
+
+        self.validation_data_fal = tf.data.Dataset.from_tensor_slices(
+            (np.stack([val_values_fal_mean_correct_shape, val_values_fal_var_correct_shape], axis=-1),
+             np.stack([val_labels_fal_correct_shape, np.zeros_like(val_labels_fal_correct_shape)], axis=-1)))
+        self.validation_data_fal = self.validation_data_fal.batch(self.config.batch_size)
