@@ -1,6 +1,6 @@
 import os, sys
 import tensorflow as tf
-
+import numpy as np
 from base.base_train import BaseTrain
 from utils.dirs import list_files_in_directory
 
@@ -24,19 +24,24 @@ class ExampleTrainer(BaseTrain):
 
     def train_epoch(self):
         for step, (x_batch, y_batch) in enumerate(self.data.train_data):
-            if step % self.config.validate_every_x_batches == 0:
+            if ((step%(self.config.validate_every_x_batches))==0 and step!=0):
+                print("Step",step)
+                print("Validating now")
                 self.validation_step()
-
+                 
             self.train_step(x_batch, y_batch)
-
+        print("Step",step)
+        print("Training now")
         self.train_loss.reset_states()
 
     def train_step(self, x_batch, y_batch):
         with self.comet_logger.train():
+            #print("In trainer")
             with tf.GradientTape() as tape:
                 predictions = self.model(x_batch)
                 loss = self.loss_object(y_batch, predictions)
-
+                #print("Train loss",loss)
+                #print(loss)
             gradients = tape.gradient(loss, self.model.trainable_variables)
             self.optimizer.apply_gradients(
                 zip(gradients, self.model.trainable_variables)
@@ -50,12 +55,12 @@ class ExampleTrainer(BaseTrain):
 
     def validation_step(self):
         self.validation_loss.reset_states()
-
+        #print("In validation")
         with self.comet_logger.test():
             for (x_batch, y_batch) in self.data.validation_data:
                 predictions = self.model(x_batch)
                 loss = self.loss_object(y_batch, predictions)
-
+                #print("Val_loss",loss)
                 self.validation_loss(loss)
 
             self.comet_logger.log_metric(
@@ -78,3 +83,5 @@ class ExampleTrainer(BaseTrain):
                 "model_at_iter_" + str(self.optimizer.iterations),
             ),
         )
+        #w=self.model.load_weights(os.path.join(self.config.checkpoint_dir+"model_at_iter_"+str(self.optimizer.iterations)))
+        #print(w)
