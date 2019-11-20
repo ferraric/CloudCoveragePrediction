@@ -32,13 +32,8 @@ class Conv3dModel(Model):
         self.deconv1 = Conv3DTranspose(kernel_size=[3,3,3], filters=2,
                                        strides=[2,2,2], padding="valid", activation="relu",
                                        output_padding=[0,0,1])
-
-        #self.pad = ZeroPadding2D(padding=((1, 0), (0, 0)))
-        #self.conv1 = Conv2D(121, [3,3], padding="same", activation="relu", input_shape=(90, 59, 121))
-        #self.max_pool = MaxPooling2D(padding="same")
-        #self.conv2 = Conv2D(121, [3,3], padding="same", activation="relu")
-        #self.up_sam = UpSampling2D((2, 2))
-        #self.crop = Cropping2D(cropping=((1, 1), (1, 0)))
+        self.w_input = tf.Variable(initial_value=1.0);
+        self.w_decoder = tf.Variable(initial_value=0.0);
 
     def call(self, x):
         input = x
@@ -48,5 +43,6 @@ class Conv3dModel(Model):
         x = self.deconv3(x)
         x = self.deconv2(x)
         x = self.deconv1(x)
-        x = tf.keras.layers.average([x, input])
+        x = tf.keras.layers.average([tf.math.scalar_mul(self.w_decoder,x),
+                                     tf.math.scalar_mul(self.w_input,input)])
         return x
