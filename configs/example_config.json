@@ -1,12 +1,12 @@
 {
-  "exp_name": "example_experiment",
-  "num_epochs": 1,
-  "validate_every_x_batches": 5,
+  "exp_name": "embedding_stuff1",
+  "num_epochs":500,
+  "validate_every_x_batches":10,
   "shuffle_buffer_size" : 10,
   "optimizer": "Adam",
-  "learning_rate": 0.001,
-  "batch_size": 3,
-  "use_comet_experiments" : true,
+  "learning_rate": 0.0005,
+  "batch_size":1048576,
+  "use_comet_experiments" :true,
   "comet_api_key" : "YNVsumiYWc7SZi21EhZzy7e6y",
   "comet_project_name" : "dslab2019-meteoswisscloud",
   "comet_workspace" : "ferraric"
