@@ -28,14 +28,8 @@ class CRPSTrainer(BaseTrain):
 
         self.train_loss = tf.keras.metrics.Mean(name="train_loss")
 
-        self.validation_loss_win = tf.keras.metrics.Mean(name="validation_loss_winter")
-        self.validation_ensemble_loss_win =  tf.keras.metrics.Mean(name="validation_ensemble_loss_winter")
-        self.validation_loss_spr = tf.keras.metrics.Mean(name="validation_loss_spring")
-        self.validation_ensemble_loss_spr = tf.keras.metrics.Mean(name="validation_ensemble_loss_spring")
-        self.validation_loss_sum = tf.keras.metrics.Mean(name="validation_loss_summer")
-        self.validation_ensemble_loss_sum = tf.keras.metrics.Mean(name="validation_ensemble_loss_summer")
-        self.validation_loss_fal = tf.keras.metrics.Mean(name="validation_loss_fall")
-        self.validation_ensemble_loss_fal = tf.keras.metrics.Mean(name="validation_ensemble_loss_fall")
+        self.validation_loss = tf.keras.metrics.Mean(name="validation_loss")
+        self.validation_ensemble_loss =  tf.keras.metrics.Mean(name="validation_ensemble_loss")
 
     def train_epoch(self):
         self.comet_logger.log_metric(
@@ -70,50 +64,17 @@ class CRPSTrainer(BaseTrain):
             )
 
     def validation_step(self):
-        self.validation_loss_win.reset_states()
-        self.validation_loss_spr.reset_states()
-        self.validation_loss_sum.reset_states()
-        self.validation_loss_fal.reset_states()
+        self.validation_loss.reset_states()
 
         with self.comet_logger.test():
-            for (x_batch, y_batch) in self.data.validation_data_win:
+            for (x_batch, y_batch) in self.data.validation_data:
                 predictions = self.model(x_batch)
                 loss = self.loss_object(y_batch, predictions)
 
-                self.validation_loss_win(loss)
+                self.validation_loss(loss)
 
             self.comet_logger.log_metric(
-                "average_loss_win", self.validation_loss_win.result(), step=self.optimizer.iterations
-            )
-
-            for (x_batch, y_batch) in self.data.validation_data_spr:
-                predictions = self.model(x_batch)
-                loss = self.loss_object(y_batch, predictions)
-
-                self.validation_loss_spr(loss)
-
-            self.comet_logger.log_metric(
-                "average_loss_spr", self.validation_loss_spr.result(), step=self.optimizer.iterations
-            )
-
-            for (x_batch, y_batch) in self.data.validation_data_sum:
-                predictions = self.model(x_batch)
-                loss = self.loss_object(y_batch, predictions)
-
-                self.validation_loss_sum(loss)
-
-            self.comet_logger.log_metric(
-                "average_loss_sum", self.validation_loss_sum.result(), step=self.optimizer.iterations
-            )
-
-            for (x_batch, y_batch) in self.data.validation_data_fal:
-                predictions = self.model(x_batch)
-                loss = self.loss_object(y_batch, predictions)
-
-                self.validation_loss_fal(loss)
-
-            self.comet_logger.log_metric(
-                "average_loss_fal", self.validation_loss_fal.result(), step=self.optimizer.iterations
+                "average_loss", self.validation_loss.result(), step=self.optimizer.iterations
             )
 
 
@@ -126,40 +87,13 @@ class CRPSTrainer(BaseTrain):
 
     def evaluate_ensemble_crps(self):
         with self.comet_logger.test():
-            for (x_batch, y_batch) in self.data.validation_data_win:
+            for (x_batch, y_batch) in self.data.validation_data:
                 predictions = self.model(x_batch)
                 ensemble_loss = self.ensemble_loss(y_batch, predictions)
-                self.validation_ensemble_loss_win(ensemble_loss)
+                self.validation_ensemble_loss(ensemble_loss)
 
             self.comet_logger.log_metric(
-                "ensemble_loss_win", self.validation_ensemble_loss_win.result(), step=self.optimizer.iterations
-            )
-
-            for (x_batch, y_batch) in self.data.validation_data_spr:
-                predictions = self.model(x_batch)
-                ensemble_loss = self.ensemble_loss(y_batch, predictions)
-                self.validation_ensemble_loss_spr(ensemble_loss)
-
-            self.comet_logger.log_metric(
-                "ensemble_loss_spr", self.validation_ensemble_loss_spr.result(), step=self.optimizer.iterations
-            )
-
-            for (x_batch, y_batch) in self.data.validation_data_sum:
-                predictions = self.model(x_batch)
-                ensemble_loss = self.ensemble_loss(y_batch, predictions)
-                self.validation_ensemble_loss_sum(ensemble_loss)
-
-            self.comet_logger.log_metric(
-                "ensemble_loss_sum", self.validation_ensemble_loss_sum.result(), step=self.optimizer.iterations
-            )
-
-            for (x_batch, y_batch) in self.data.validation_data_fal:
-                predictions = self.model(x_batch)
-                ensemble_loss = self.ensemble_loss(y_batch, predictions)
-                self.validation_ensemble_loss_fal(ensemble_loss)
-
-            self.comet_logger.log_metric(
-                "ensemble_loss_fal", self.validation_ensemble_loss_fal.result(), step=self.optimizer.iterations
+                "ensemble_loss", self.validation_ensemble_loss.result(), step=self.optimizer.iterations
             )
 
     def save_model(self):
