@@ -38,6 +38,12 @@ class CRPSTrainer(BaseTrain):
         self.validation_ensemble_loss_fal = tf.keras.metrics.Mean(name="validation_ensemble_loss_fall")
 
     def train_epoch(self):
+        self.comet_logger.log_metric(
+            name = "combination weight",
+            value = self.model.get_combination_weight(),
+            step = self.current_epoch
+        )
+
         for step, (x_batch, y_batch) in enumerate(self.data.train_data):
             if (step % self.config.validate_every_x_batches == 0) and (step != 0):
                 self.validation_step()

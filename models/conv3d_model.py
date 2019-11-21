@@ -32,8 +32,9 @@ class Conv3dModel(Model):
         self.deconv1 = Conv3DTranspose(kernel_size=[3,3,3], filters=2,
                                        strides=[2,2,2], padding="valid", activation="relu",
                                        output_padding=[0,0,1])
-        self.w_input = tf.Variable(initial_value=1.0);
-        self.w_decoder = tf.Variable(initial_value=0.0);
+        self.w_comb = tf.Variable(initial_value=tf.random.uniform(shape=[], minval=0.0, maxval=1.0),
+                                  constraint=lambda w: tf.clip_by_value(w, clip_value_min=0.0, clip_value_max=1.0));
+        self.one = tf.constant(1.0)
 
     def call(self, x):
         input = x
@@ -43,6 +44,9 @@ class Conv3dModel(Model):
         x = self.deconv3(x)
         x = self.deconv2(x)
         x = self.deconv1(x)
-        x = tf.keras.layers.average([tf.math.scalar_mul(self.w_decoder,x),
-                                     tf.math.scalar_mul(self.w_input,input)])
+        x = tf.keras.layers.average([tf.math.scalar_mul(self.w_comb,x),
+                                     tf.math.scalar_mul(tf.math.subtract(self.one, self.w_comb), input)])
         return x
+
+    def get_combination_weight(self):
+        return self.w_comb.value()
