@@ -9,11 +9,11 @@ sys.path.append('../')
 
 from data_loader.conv3d_data_loader import DataGenerator
 from models.ferraric_0_model import CNNModel
-from models.conv3d_model import Conv3dModel
 from models.ferraric_1_model import LocalModel, SimpleModel
 from models.identity_model import IdentityModel
+from models.unet_model import UNetModel
 from trainers.example_trainer import ExampleTrainer
-from trainers.conv3d_trainer import CRPSTrainer
+from trainers.crps_trainer import CRPSTrainer
 from utils.config import process_config
 from utils.dirs import create_dirs
 from utils.arg import get_args
@@ -56,7 +56,7 @@ def main():
 
     data = DataGenerator(config, experiment)
 
-    dummy_model = Conv3dModel(config)
+    dummy_model = UNetModel(config)
     iterator = iter(data.train_data)
     dummy_inputs, _ = next(iterator)
     dummy_model(dummy_inputs)
@@ -70,7 +70,7 @@ def main():
     #data_input_shape = next(iter(data.train_data))[0].shape
     #model.log_model_architecture_to(experiment, data_input_shape)
 
-    model = Conv3dModel(config)
+    model = UNetModel(config)
     trainer = CRPSTrainer(model, data, config, experiment)
     trainer.train()
 
