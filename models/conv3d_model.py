@@ -32,7 +32,7 @@ class Conv3dModel(Model):
         self.deconv1 = Conv3DTranspose(kernel_size=[3,3,3], filters=2,
                                        strides=[2,2,2], padding="valid", activation="relu",
                                        output_padding=[0,0,1])
-        self.w_comb = tf.Variable(initial_value=tf.random.uniform(shape=[], minval=0.0, maxval=1.0),
+        self.w_comb = tf.Variable(initial_value=0.05,
                                   constraint=lambda w: tf.clip_by_value(w, clip_value_min=0.0, clip_value_max=1.0));
         self.one = tf.constant(1.0)
 
