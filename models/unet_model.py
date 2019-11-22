@@ -14,66 +14,66 @@ class UNetModel(Model):
         self.inputlayer = InputLayer(input_shape=(self.config.batch_size, 121, 59, 90, 2))
 
         self.conv11 = Conv3D(filters=16, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc11 = BatchNormalization(axis=-1)
+        self.batc11 = BatchNormalization(axis=-1, trainable=True)
         self.conv12 = Conv3D(filters=16, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc12 = BatchNormalization(axis=-1)
+        self.batc12 = BatchNormalization(axis=-1, trainable=True)
         self.pool1 = MaxPooling3D(pool_size=(2,2,2), strides=2)
 
         self.conv21 = Conv3D(filters=32, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc21 = BatchNormalization(axis=-1)
+        self.batc21 = BatchNormalization(axis=-1, trainable=True)
         self.conv22 = Conv3D(filters=32, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc22 = BatchNormalization(axis=-1)
+        self.batc22 = BatchNormalization(axis=-1, trainable=True)
         self.pool2 = MaxPooling3D(pool_size=(2,2,2), strides=2)
 
         self.conv31 = Conv3D(filters=64, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc31 = BatchNormalization(axis=-1)
+        self.batc31 = BatchNormalization(axis=-1, trainable=True)
         self.conv32 = Conv3D(filters=64, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc32 = BatchNormalization(axis=-1)
+        self.batc32 = BatchNormalization(axis=-1, trainable=True)
         self.pool3 = MaxPooling3D(pool_size=(2,2,2), strides=2)
 
         self.conv41 = Conv3D(filters=128, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc41 = BatchNormalization(axis=-1)
+        self.batc41 = BatchNormalization(axis=-1, trainable=True)
         self.conv42 = Conv3D(filters=128, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc42 = BatchNormalization(axis=-1)
+        self.batc42 = BatchNormalization(axis=-1, trainable=True)
         self.drop4 = Dropout(rate=0.5)                                               # Not in Paper, but is in code
         self.pool4 = MaxPooling3D(pool_size=(2,2,2), strides=2)
 
         self.conv51 = Conv3D(filters=256, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc51 = BatchNormalization(axis=-1)
+        self.batc51 = BatchNormalization(axis=-1, trainable=True)
         self.conv52 = Conv3D(filters=256, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc52 = BatchNormalization(axis=-1)
+        self.batc52 = BatchNormalization(axis=-1, trainable=True)
         self.drop5 = Dropout(rate=0.5)                                               # Not in Paper, but is in code
         self.upconv5 = Conv3DTranspose(filters=128, kernel_size=(2,2,2), strides=(2,2,2), padding='valid',
                                        output_padding=(1,1,1))
 
         #self.concatenate6 = Concatenate([self.upconv5, self.drop4])
         self.conv61 = Conv3D(filters=128, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc61 = BatchNormalization(axis=-1)
+        self.batc61 = BatchNormalization(axis=-1, trainable=True)
         self.conv62 = Conv3D(filters=128, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc62 = BatchNormalization(axis=-1)
+        self.batc62 = BatchNormalization(axis=-1, trainable=True)
         self.upconv6 = Conv3DTranspose(filters=64, kernel_size=(2,2,2), strides=(2,2,2), padding='same')
 
         #self.concatenate7 = Concatenate([self.upconv6, self.conv32])
         self.conv71 = Conv3D(filters=64, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc71 = BatchNormalization(axis=-1)
+        self.batc71 = BatchNormalization(axis=-1, trainable=True)
         self.conv72 = Conv3D(filters=64, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc72 = BatchNormalization(axis=-1)
+        self.batc72 = BatchNormalization(axis=-1, trainable=True)
         self.upconv7 = Conv3DTranspose(filters=32, kernel_size=(2,2,2), strides=(2,2,2), padding='valid',
                                        output_padding=(0,1,1))
 
         #self.concatenate8 = Concatenate([self.upconv7, self.conv22])
         self.conv81 = Conv3D(filters=32, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc81 = BatchNormalization(axis=-1)
+        self.batc81 = BatchNormalization(axis=-1, trainable=True)
         self.conv82 = Conv3D(filters=32, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc82 = BatchNormalization(axis=-1)
+        self.batc82 = BatchNormalization(axis=-1, trainable=True)
         self.upconv8 = Conv3DTranspose(filters=16, kernel_size=(2,2,2), strides=(2,2,2), padding='valid',
                                        output_padding=(1,1,0))
 
         #self.concatenate9 = Concatenate([self.upconv8, self.conv12])
         self.conv91 = Conv3D(filters=16, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc91 = BatchNormalization(axis=-1)
+        self.batc91 = BatchNormalization(axis=-1, trainable=True)
         self.conv92 = Conv3D(filters=16, kernel_size=(3,3,3), activation='relu', padding='same')
-        self.batc92= BatchNormalization(axis=-1)
+        self.batc92= BatchNormalization(axis=-1, trainable=True)
 
         self.conv93 = Conv3D(filters=2, kernel_size=(1,1,1), padding='same')
 
