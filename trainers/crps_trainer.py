@@ -4,7 +4,7 @@ import tensorflow as tf
 from base.base_train import BaseTrain
 from utils.dirs import list_files_in_directory
 from losses.crps_norm_loss import CrpsNormLoss
-from losses.crps_ensemble_loss import CrpsEnsembleLoss
+from losses.crps_norm_to_ensemble_loss import CrpsEnsembleLoss
 
 
 class CRPSTrainer(BaseTrain):

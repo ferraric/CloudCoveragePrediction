@@ -3,13 +3,12 @@ import tensorflow as tf
 
 from base.base_train import BaseTrain
 from utils.dirs import list_files_in_directory
-from losses.crps_norm_loss import CrpsNormLoss
-from losses.crps_norm_to_ensemble_loss import CrpsEnsembleLoss
+from losses.crps_21_ensemble_loss import Crps21EnsembleLoss
 
 
-class CRPSTrainer(BaseTrain):
+class QuantilesTrainer(BaseTrain):
     def __init__(self, model, data, config, comet_logger):
-        super(CRPSTrainer, self).__init__(
+        super(QuantilesTrainer, self).__init__(
             model, data, config, comet_logger
         )
         # changed this
@@ -22,8 +21,7 @@ class CRPSTrainer(BaseTrain):
         self.evaluate_ensemble_crps()
 
     def setup_metrics(self):
-        self.loss_object = CrpsNormLoss()
-        self.ensemble_loss = CrpsEnsembleLoss()
+        self.loss_object = Crps21EnsembleLoss()
         self.best_loss = sys.maxsize
 
         self.train_loss = tf.keras.metrics.Mean(name="train_loss")
@@ -38,12 +36,6 @@ class CRPSTrainer(BaseTrain):
         self.validation_ensemble_loss_fal = tf.keras.metrics.Mean(name="validation_ensemble_loss_fall")
 
     def train_epoch(self):
-        self.comet_logger.log_metric(
-            name = "combination weight",
-            value = self.model.get_combination_weight(),
-            step = self.current_epoch
-        )
-
         for step, (x_batch, y_batch) in enumerate(self.data.train_data):
             if (step % self.config.validate_every_x_batches == 0) and (step != 0):
                 self.validation_step()
@@ -128,7 +120,7 @@ class CRPSTrainer(BaseTrain):
         with self.comet_logger.test():
             for (x_batch, y_batch) in self.data.validation_data_win:
                 predictions = self.model(x_batch)
-                ensemble_loss = self.ensemble_loss(y_batch, predictions)
+                ensemble_loss = self.loss_object(y_batch, predictions)
                 self.validation_ensemble_loss_win(ensemble_loss)
 
             self.comet_logger.log_metric(
@@ -137,7 +129,7 @@ class CRPSTrainer(BaseTrain):
 
             for (x_batch, y_batch) in self.data.validation_data_spr:
                 predictions = self.model(x_batch)
-                ensemble_loss = self.ensemble_loss(y_batch, predictions)
+                ensemble_loss = self.loss_object(y_batch, predictions)
                 self.validation_ensemble_loss_spr(ensemble_loss)
 
             self.comet_logger.log_metric(
@@ -146,7 +138,7 @@ class CRPSTrainer(BaseTrain):
 
             for (x_batch, y_batch) in self.data.validation_data_sum:
                 predictions = self.model(x_batch)
-                ensemble_loss = self.ensemble_loss(y_batch, predictions)
+                ensemble_loss = self.loss_object(y_batch, predictions)
                 self.validation_ensemble_loss_sum(ensemble_loss)
 
             self.comet_logger.log_metric(
@@ -155,7 +147,7 @@ class CRPSTrainer(BaseTrain):
 
             for (x_batch, y_batch) in self.data.validation_data_fal:
                 predictions = self.model(x_batch)
-                ensemble_loss = self.ensemble_loss(y_batch, predictions)
+                ensemble_loss = self.loss_object(y_batch, predictions)
                 self.validation_ensemble_loss_fal(ensemble_loss)
 
             self.comet_logger.log_metric(
