@@ -16,19 +16,15 @@ class Crps21EnsembleLoss(Loss):
             Returns:
                 mean_crps: Scalar with mean CRPS over batch
             """
-        # TODO: refactor this
         y_true = tf.reshape(y_true, [-1,21])
-        y_true = y_true[:, 0]  # Need to also get rid of axis 1 to match!
+        y_true = y_true[:, 0]
         y_pred = tf.reshape(y_pred, [-1, 21])
 
-        n = y_pred.shape[0]
-        d = y_pred.shape[1]
+        n = tf.shape(y_pred)[0]
+        d = tf.shape(y_pred)[1]
         y_true = tf.reshape(y_true, [n, 1])
-        diffs = tf.math.reduce_sum(tf.math.abs(tf.math.subtract(y_pred, tf.broadcast_to(y_true, [n, d]))), axis=1)
-        strech_terms = np.apply_along_axis(
-            lambda row: tf.math.reduce_sum(squareform(pdist(tf.reshape(row, [d, 1]), 'cityblock'))),
-            axis=1, arr=y_pred)
-        new_crps =  diffs / d - strech_terms / (2 * d ** 2)
-        #crps = crps_ensemble(np.transpose(y_true), np.transpose(y_pred))
-        #assert new_crps == crps
-        return tf.math.reduce_mean(new_crps)
+        diffs = tf.math.reduce_sum(tf.math.abs(tf.math.subtract(y_pred, tf.broadcast_to(y_true, (n, d)))), axis=1)
+        pair_diff_sum = tf.map_fn(lambda row: tf.reduce_sum(tf.abs(tf.subtract(row, tf.expand_dims(row, 1)))), y_pred)
+        crps =  diffs / d - pair_diff_sum / (2 * d ** 2)
+
+        return tf.math.reduce_mean(crps)
