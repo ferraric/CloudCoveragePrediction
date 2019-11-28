@@ -10,7 +10,7 @@ class UNetModelQ(Model):
         self.build_model()
 
     def build_model(self):
-        self.inputlayer = InputLayer(input_shape=(self.config.batch_size, 121, 59, 90, 21))
+        self.inputlayer = InputLayer(input_shape=(self.config.batch_size, 121, 59, 90, 7))
 
         self.conv11 = Conv3D(filters=32, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc11 = BatchNormalization(axis=-1)

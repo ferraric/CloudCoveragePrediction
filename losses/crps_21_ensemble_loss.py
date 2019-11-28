@@ -16,7 +16,7 @@ class Crps21EnsembleLoss(Loss):
             Returns:
                 mean_crps: Scalar with mean CRPS over batch
             """
-        y_true = tf.reshape(y_true, [-1,21])
+        y_true = tf.reshape(y_true, [-1,7])
         y_true = y_true[:, 0]
         y_pred = tf.reshape(y_pred, [-1, 21])
 
