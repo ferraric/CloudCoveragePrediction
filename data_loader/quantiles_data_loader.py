@@ -17,19 +17,19 @@ class DataGenerator:
         ), "You need to define the parameter 'shuffle_buffer_size' in your config file."
 
         nwp_data = xr.open_mfdataset(
-           #"/mnt/ds3lab-scratch/ferraric/nwp_subsampled_2x2_5_day_stride_ensemble_mean_var/subsampled_CLCT_2014-01-01-00_2018-12-31-00.nc"
-           #"/mnt/ds3lab-scratch/ferraric/nwp_subsampled_2x2_5_day_stride_ensemble_mean_var/subsampled_CLCT_2014-01-01-12_2018-12-31-12.nc"
-            "../local/local_data/subsampled_quantiles/subsampled_CLCT_2014-01-01-00_2014-04-30-00.nc"
+           "/mnt/ds3lab-scratch/ferraric/nwp_subsampled_2x2_5_day_stride_ensemble_quantiles/subsampled_CLCT_2014-01-01-00_2018-12-31-00.nc"
+           #"/mnt/ds3lab-scratch/ferraric/nwp_subsampled_2x2_5_day_stride_ensemble_quantiles/subsampled_CLCT_2014-01-01-12_2018-12-31-12.nc"
+           #"../local/local_data/subsampled_quantiles/subsampled_CLCT_2014-01-01-00_2014-04-30-00.nc"
         )
 
         dummy_nwp = nwp_data.isel(lead_time=0, init_time=0, quantile=0).drop(['lead_time', 'init_time', 'quantile']).rename({'CLCT_quantiles': 'CLCT'})
         label_transformer = LabelTransformer(dummy_nwp)
         labels = xr.open_mfdataset(
-            #"/mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_201[4-7]*.nc",
-            "../local/local_data/labels/meteosat.CFC.H_ch05.latitude_longitude_201[4-4]0[2-2]*.nc",
+            "/mnt/ds3lab-scratch/bhendj/grids/CM-SAF/MeteosatCFC/meteosat.CFC.H_ch05.latitude_longitude_201[4-4]0[2-4]*.nc",
+            #"../local/local_data/labels/meteosat.CFC.H_ch05.latitude_longitude_201[4-4]0[2-2]*.nc",
             combine='by_coords', preprocess=label_transformer.map_to_nwp_grid)
 
-        cutoff_date = pd.Timestamp('2014-02-28') - pd.Timedelta(hours=121)
+        cutoff_date = pd.Timestamp('2014-04-30') - pd.Timedelta(hours=121)
         nwp = nwp_data.sel(init_time=slice('2014-01-01', cutoff_date))
 
         label_values_per_it = np.zeros(nwp.sel(quantile=0).drop('quantile').CLCT_quantiles.values.shape, dtype=np.float32)
@@ -50,7 +50,7 @@ class DataGenerator:
         label_values_per_it_quantiles = np.tile(np.expand_dims(label_values_per_it,axis=2), (1,1,21,1,1))
         nwp = nwp.assign(labelValue=(['init_time', 'lead_time', 'quantile', 'y_1', 'x_1'], label_values_per_it_quantiles))
         nwp = nwp.transpose('init_time', 'lead_time', 'y_1', 'x_1', 'quantile')
-        val_cutoff = '2014-02-20'
+        val_cutoff = '2014-04-01'
         assert pd.Timestamp(val_cutoff) < pd.Timestamp(cutoff_date)
         nwp_train = nwp.sel(init_time=slice('2014-02-01',val_cutoff))
         train_values_correct_shape = nwp_train.CLCT_quantiles.values

@@ -20,8 +20,8 @@ class Crps21EnsembleLoss(Loss):
         y_true = y_true[:, 0]
         y_pred = tf.reshape(y_pred, [-1, 21])
 
-        n = tf.shape(y_pred)[0]
-        d = tf.shape(y_pred)[1]
+        n = tf.dtypes.cast(tf.shape(y_pred)[0], tf.float32) 
+        d = tf.dtypes.cast(tf.shape(y_pred)[1], tf.float32)  
         y_true = tf.reshape(y_true, [n, 1])
         diffs = tf.math.reduce_sum(tf.math.abs(tf.math.subtract(y_pred, tf.broadcast_to(y_true, (n, d)))), axis=1)
         pair_diff_sum = tf.map_fn(lambda row: tf.reduce_sum(tf.abs(tf.subtract(row, tf.expand_dims(row, 1)))), y_pred)
