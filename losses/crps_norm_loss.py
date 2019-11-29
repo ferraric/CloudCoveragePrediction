@@ -16,7 +16,7 @@ class CrpsNormLoss(Loss):
                 mean_crps: Scalar with mean CRPS over batch
             """
         # TODO: refactor this
-        y_true = tf.reshape(y_true, [-1,2])
+        y_true = tf.reshape(y_true, [-1,1])
         y_pred = tf.reshape(y_pred, [-1, 2])
 
         mu = y_pred[:, 0]
