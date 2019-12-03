@@ -5,6 +5,7 @@ from base.base_train import BaseTrain
 from utils.dirs import list_files_in_directory
 from losses.crps_norm_loss import CrpsNormLoss
 from losses.crps_norm_to_ensemble_loss import CrpsEnsembleLoss
+from losses.crps_21_ensemble_loss import Crps21EnsembleLoss
 
 
 class CRPSTrainer(BaseTrain):
@@ -22,7 +23,7 @@ class CRPSTrainer(BaseTrain):
         self.evaluate_ensemble_crps()
 
     def setup_metrics(self):
-        self.loss_object = CrpsNormLoss()
+        self.loss_object = Crps21EnsembleLoss()
         self.ensemble_loss = CrpsEnsembleLoss()
         self.best_loss = sys.maxsize
 
@@ -157,10 +158,12 @@ class CRPSTrainer(BaseTrain):
             )
 
     def save_model(self):
-        tf.saved_model.save(
-            self.model,
-            os.path.join(
-                self.config.checkpoint_dir,
-                "model_at_iter_" + str(self.optimizer.iterations),
-            ),
-        )
+        #tf.saved_model.save(
+        #    self.model,
+        #    os.path.join(
+        #        self.config.checkpoint_dir,
+        #        "model_at_iter_" + str(self.optimizer.iterations),
+        #    ),
+        #)
+        self.model.save(os.path.join(self.config.checkpoint_dir, "model_at_iter_" + str(self.optimizer.iterations.eval()) + ".h5"))
+
