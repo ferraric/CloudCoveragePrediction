@@ -5,6 +5,7 @@ from base.base_train import BaseTrain
 from utils.dirs import list_files_in_directory
 from losses.crps_norm_loss import CrpsNormLoss
 from losses.crps_ensemble_loss import CrpsEnsembleLoss
+from metrics.pit_hist_norm import PitHistNorm
 
 
 class CRPSTrainer(BaseTrain):
@@ -30,6 +31,7 @@ class CRPSTrainer(BaseTrain):
 
         self.validation_loss_win = tf.keras.metrics.Mean(name="validation_loss_winter")
         self.validation_ensemble_loss_win =  tf.keras.metrics.Mean(name="validation_ensemble_loss_winter")
+        self.validation_pit_hist_win = PitHistNorm(name="validation_pit_hist_win")
         self.validation_loss_spr = tf.keras.metrics.Mean(name="validation_loss_spring")
         self.validation_ensemble_loss_spr = tf.keras.metrics.Mean(name="validation_ensemble_loss_spring")
         self.validation_loss_sum = tf.keras.metrics.Mean(name="validation_loss_summer")
@@ -65,6 +67,7 @@ class CRPSTrainer(BaseTrain):
 
     def validation_step(self):
         self.validation_loss_win.reset_states()
+        self.validation_pit_hist_win.reset_states()
         self.validation_loss_spr.reset_states()
         self.validation_loss_sum.reset_states()
         self.validation_loss_fal.reset_states()
@@ -74,8 +77,12 @@ class CRPSTrainer(BaseTrain):
                 predictions = self.model(x_batch)
                 loss = self.loss_object(y_batch, predictions)
 
+                self.validation_pit_hist_win.update_hist(y_batch, predictions)
                 self.validation_loss_win(loss)
 
+            self.comet_logger.log_histogram_3d(
+                name="pit_histogram_win", values=self.validation_pit_hist_win.result()
+            )
             self.comet_logger.log_metric(
                 "average_loss_win", self.validation_loss_win.result(), step=self.optimizer.iterations
             )
