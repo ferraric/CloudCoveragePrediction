@@ -17,18 +17,21 @@ class ContextUNetModel(Model):
         self.batc11 = BatchNormalization(axis=-1)
         self.conv12 = Conv3D(filters=16, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc12 = BatchNormalization(axis=-1)
+        self.drop1 = Dropout(rate=0.5)
         self.pool1 = MaxPooling3D(pool_size=(2,2,2), strides=2)
 
         self.conv21 = Conv3D(filters=32, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc21 = BatchNormalization(axis=-1)
         self.conv22 = Conv3D(filters=32, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc22 = BatchNormalization(axis=-1)
+        self.drop2 = Dropout(rate=0.5)
         self.pool2 = MaxPooling3D(pool_size=(2,2,2), strides=2)
 
         self.conv31 = Conv3D(filters=64, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc31 = BatchNormalization(axis=-1)
         self.conv32 = Conv3D(filters=64, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc32 = BatchNormalization(axis=-1)
+        self.drop3 = Dropout(rate=0.5)
         self.pool3 = MaxPooling3D(pool_size=(2,2,2), strides=2)
 
         self.conv41 = Conv3D(filters=128, kernel_size=(3,3,3), activation='relu', padding='same')
@@ -51,6 +54,7 @@ class ContextUNetModel(Model):
         self.batc61 = BatchNormalization(axis=-1)
         self.conv62 = Conv3D(filters=128, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc62 = BatchNormalization(axis=-1)
+        self.drop6 = Dropout(rate=0.5)
         self.upconv6 = Conv3DTranspose(filters=64, kernel_size=(2,2,2), strides=(2,2,2), padding='same')
 
         #self.concatenate7 = Concatenate([self.upconv6, self.conv32])
@@ -58,6 +62,7 @@ class ContextUNetModel(Model):
         self.batc71 = BatchNormalization(axis=-1)
         self.conv72 = Conv3D(filters=64, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc72 = BatchNormalization(axis=-1)
+        self.drop7 = Dropout(rate=0.5)
         self.upconv7 = Conv3DTranspose(filters=32, kernel_size=(2,2,2), strides=(2,2,2), padding='valid',
                                        output_padding=(0,1,1))
 
@@ -66,6 +71,7 @@ class ContextUNetModel(Model):
         self.batc81 = BatchNormalization(axis=-1)
         self.conv82 = Conv3D(filters=32, kernel_size=(3,3,3), activation='relu', padding='same')
         self.batc82 = BatchNormalization(axis=-1)
+        self.drop8 = Dropout(rate=0.5)
         self.upconv8 = Conv3DTranspose(filters=16, kernel_size=(2,2,2), strides=(2,2,2), padding='valid',
                                        output_padding=(1,1,0))
 
@@ -86,6 +92,7 @@ class ContextUNetModel(Model):
         x = self.conv12(x)
         x = self.batc12(x)
         conv12 = x
+        x = self.drop1(x)
         x = self.pool1(x)
 
         x = self.conv21(x)
@@ -93,6 +100,7 @@ class ContextUNetModel(Model):
         x = self.conv22(x)
         x = self.batc22(x)
         conv22 = x
+        x = self.drop2(x)
         x = self.pool2(x)
 
         x = self.conv31(x)
@@ -100,6 +108,7 @@ class ContextUNetModel(Model):
         x = self.conv32(x)
         x = self.batc32(x)
         conv32 = x
+        x = self.drop3(x)
         x = self.pool3(x)
 
         x = self.conv41(x)
@@ -111,7 +120,7 @@ class ContextUNetModel(Model):
         x = self.pool4(x)
 
         month_info = inputs[0]
-        month_info = tf.reshape(self.month_embedding(month_info), (1, 7, 3, 5, 1))
+        month_info = tf.reshape(self.month_embedding(month_info), (self.config.batch_size, 7, 3, 5, 1))
 
         x = concatenate([x, month_info])
         x = self.conv51(x)
@@ -126,6 +135,7 @@ class ContextUNetModel(Model):
         x = self.batc61(x)
         x = self.conv62(x)
         x = self.batc62(x)
+        x = self.drop6(x)
         x = self.upconv6(x)
 
         x = concatenate([x, conv32])
@@ -133,6 +143,7 @@ class ContextUNetModel(Model):
         x = self.batc71(x)
         x = self.conv72(x)
         x = self.batc72(x)
+        x = self.drop7(x)
         x = self.upconv7(x)
 
         x = concatenate([x, conv22])
@@ -140,6 +151,7 @@ class ContextUNetModel(Model):
         x = self.batc81(x)
         x = self.conv82(x)
         x = self.batc82(x)
+        x = self.drop8(x)
         x = self.upconv8(x)
         x = concatenate([x, conv12])
         x = self.conv91(x)
