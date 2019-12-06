@@ -83,6 +83,8 @@ class CRPSTrainer(BaseTrain):
             self.comet_logger.log_histogram_3d(
                 name="pit_histogram_win", values=self.validation_pit_hist_win.result()
             )
+            self.comet_logger.log_asset_data(data=self.validation_pit_hist_win.result_as_json(),
+                                        file_name="pit_histogram_win_data" + str(self.optimizer.iterations.numpy()))
             self.comet_logger.log_metric(
                 "average_loss_win", self.validation_loss_win.result(), step=self.optimizer.iterations
             )

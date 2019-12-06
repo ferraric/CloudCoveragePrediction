@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.stats import norm
+import json
 
 class PitHistNorm():
     EPS = 0.0001
@@ -27,11 +28,15 @@ class PitHistNorm():
         hundred_values_ind = (y_true >= 100)
         cdf_values[hundred_values_ind] = np.random.uniform(low=cdf_values[hundred_values_ind], high=1,
                                                            size=cdf_values[hundred_values_ind].shape)
-        np.unique(np.argwhere(cdf_values < 0))
         return cdf_values
 
     def result(self):
         return self.cdf_values
+
+    def result_as_json(self):
+        hist = np.histogram(self.cdf_values, bins = 990, range=(0,1))
+        hist_values = list(hist[0].astype(np.float64))
+        return json.dumps(hist_values)
 
     def append_cdf_values(self, cdf_values):
         if self.cdf_values is None:

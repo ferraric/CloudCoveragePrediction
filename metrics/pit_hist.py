@@ -1,4 +1,5 @@
 import numpy as np
+import json
 
 class PitHist():
     def __init__(self, name):
@@ -23,6 +24,11 @@ class PitHist():
 
     def result(self):
         return self.ranks
+
+    def result_as_json(self):
+        hist = np.histogram(self.ranks, bins=22, range=(0, 21))
+        hist_values = list(hist[0].astype(np.float64))
+        return json.dumps(hist_values)
 
     def append_ranks(self, ranks):
         if self.ranks is None:
