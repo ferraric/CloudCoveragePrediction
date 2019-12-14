@@ -20,8 +20,9 @@ class PitHistNorm():
         mu = y_pred[:, 0]
         mu = np.clip(mu, a_min=0, a_max=100)
         var = y_pred[:, 1]
-        var = np.clip(var, a_min=self.EPS, a_max=None)
-        cdf_values = norm.cdf(y_true, loc=mu, scale=var)
+        stdev = np.sqrt(np.abs(var))
+        stdev = np.clip(stdev, a_min=self.EPS, a_max=None)
+        cdf_values = norm.cdf(y_true, loc=mu, scale=stdev)
         zero_values_ind = (y_true <= 0)
         cdf_values[zero_values_ind] = np.random.uniform(low=0, high=cdf_values[zero_values_ind],
                                                         size=cdf_values[zero_values_ind].shape)
