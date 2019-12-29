@@ -48,12 +48,11 @@ def main():
                         CFC=df["CFC"].values
                         if sum(np.isnan(CFC)) == 0: #check for nans
                             CFC_values.append(CFC)
-                            #print(dpath)
-                            lat = dat["lat"].values
-                            lon = dat["lon"].values
                     out= np.array(CFC_values)
                     actpath =cb_obj.get_date_path(data_path,[int(y),int(m),int(day)],hourstr)
                     dat_act = xr.open_dataset(actpath)
+                    lat = dat_act["lat"].values
+                    lon = dat_act["lon"].values
                     df_act = dat_act.to_dataframe()
                     CFC_act=df_act["CFC"].values
                     if sum(np.isnan(CFC_act)) == 0:
