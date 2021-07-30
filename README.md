@@ -1,25 +1,10 @@
 # DSLAB2019_MeteoSwissCloud
 
-Meteoswiss Cloud Coverage
+## Project Description
+This was a three month project, set up as part of the Data Science Lab course at ETH Zurich in the Fall of 2019. It was supervised jointly by Dr. Stephan Hemri from MeteoSwiss, Professor Ce Zhang and Professor Andreas Krause (both from ETH).
 
-https://docs.google.com/document/d/1Ur9mitm7LuSoFrJ0W7OYMioCn-sK-0JS7Dntxzdgxoo/edit
+## Goal
+MeteoSwiss' [COSMO](https://www.meteoswiss.admin.ch/home/measurement-and-forecasting-systems/warning-and-forecasting-systems/cosmo-forecasting-system.html) numerical weather prediction (NWP) system produces an ensemble of hourly forecasts every point on a grid over the map of Switzerland. This project aims to post-process the forecasts using Machine Learning to specifically predict cloud coverage. The prediction needs to be both accurate and well calibrated, meaning it should also give accurate uncertainty measurements.
 
-
-```python
-CUDA_VISIBLE_DEVICES=2 python3 main_mean_var_from_mv.py  -c ../configs/mean_var_from_mean_var.json
-```
-```python
-CUDA_VISIBLE_DEVICES=2 python3 main_mean_var_from_7.py -c ../configs/mean_var_7_quantiles.json
-```
-```python
-CUDA_VISIBLE_DEVICES=2 python3 main_7_to_21_after_15000.py  -c ../configs/21_from_7_quantiles.json
-```
-```python
-CUDA_VISIBLE_DEVICES="" python3 main_7_to_21_after_200.py  -c ../configs/21_from_7_quantiles.json
-```
-```python
-CUDA_VISIBLE_DEVICES=1 python3 main_7_to_21_after_2000.py  -c ../configs/21_from_7_quantiles.json
-```
-```python
-CUDA_VISIBLE_DEVICES=4 python3 main_7_to_21_after_5000.py  -c ../configs/21_from_7_quantiles.json
-```
+## People
+This project was done by Rhea Sukthanker, Yinghao Dai and Claudio Ferrari.
