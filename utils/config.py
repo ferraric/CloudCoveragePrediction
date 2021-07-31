@@ -2,6 +2,7 @@ import json
 from bunch import Bunch
 import os
 
+
 def get_config_from_json(json_file):
     """
     Get the config from a json file

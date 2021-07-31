@@ -2,6 +2,7 @@ import os
 from os import listdir
 from os.path import isfile, join
 
+
 def create_dirs(dirs):
     """
     dirs - a list of directories to create if these directories are not found
