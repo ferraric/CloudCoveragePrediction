@@ -20,18 +20,18 @@ class DataGenerator:
 
         self.train_data = tf.data.Dataset.from_tensor_slices((inputs, labels))
         self.train_data = self.train_data.shuffle(
-            buffer_size=self.config.shuffle_buffer_size
-        ).repeat(100)
-        self.train_data = self.train_data.batch(
-            self.config.batch_size, drop_remainder=True
-        )
+            buffer_size=self.config.shuffle_buffer_size).repeat(100)
+        self.train_data = self.train_data.batch(self.config.batch_size,
+                                                drop_remainder=True)
 
         # dummy input
         validation_inputs = np.zeros((1, 50, 50, 1))
         validation_labels = np.ones((1, 50, 50, 1))
 
-        self.validation_data = tf.data.Dataset.from_tensor_slices((validation_inputs, validation_labels))
-        self.validation_data = self.validation_data.batch(self.config.batch_size)
+        self.validation_data = tf.data.Dataset.from_tensor_slices(
+            (validation_inputs, validation_labels))
+        self.validation_data = self.validation_data.batch(
+            self.config.batch_size)
 
         self.comet_logger.log_dataset_hash(self.train_data)
         self.comet_logger.log_dataset_hash(self.validation_data)
