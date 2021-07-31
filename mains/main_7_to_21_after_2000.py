@@ -3,6 +3,7 @@ import json
 import os
 import random
 import sys
+
 sys.path.append('../')
 #os.environ["CUDA_VISIBLE_DEVICES"]="1"
 from data_loader.data_generator_7_quantiles import DataGenerator
@@ -15,8 +16,8 @@ from utils.arg import get_args
 
 def main():
     try:
-     args = get_args()
-     config = process_config(args.config)
+        args = get_args()
+        config = process_config(args.config)
 
     except:
         print("missing or invalid arguments")
@@ -34,17 +35,16 @@ def main():
         experiment_id = "local" + str(random.randint(1, 1000000))
 
     config.summary_dir = os.path.join(
-        "../experiments", os.path.join(config.exp_name, experiment_id), "summary/"
-    )
+        "../experiments", os.path.join(config.exp_name, experiment_id),
+        "summary/")
     config.checkpoint_dir = os.path.join(
-        "../experiments", os.path.join(config.exp_name, experiment_id), "checkpoint/"
-    )
+        "../experiments", os.path.join(config.exp_name, experiment_id),
+        "checkpoint/")
     create_dirs([config.summary_dir, config.checkpoint_dir])
     print("...creating folder {}".format(config.summary_dir))
 
-    with open(
-        os.path.join(config.summary_dir, "config_summary.json"), "w"
-    ) as json_file:
+    with open(os.path.join(config.summary_dir, "config_summary.json"),
+              "w") as json_file:
         json.dump(config, json_file)
 
     data = DataGenerator(config, experiment)
