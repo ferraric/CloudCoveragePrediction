@@ -11,4 +11,7 @@ MeteoSwiss' [COSMO](https://www.meteoswiss.admin.ch/home/measurement-and-forecas
 ## Poster
 ![plot](./poster/DataScienceLabPoster.jpg)
 
+## Report
+<b> DSLAB2019_MeteoSwissCloud.pdf </b> contains the description of the project and the proposed method
+
 
