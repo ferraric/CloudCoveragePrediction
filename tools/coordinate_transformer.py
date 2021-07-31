@@ -29,11 +29,14 @@ def transform_to_x_y(lon: float, lat: float) -> Tuple[float, float]:
     lon_ = np.radians(lon)
     lat_ = np.radians(lat)
 
-    x_ = np.arctan(np.cos(lat_) * np.sin(lon_ - lon_north_pole_) /
-                   (np.cos(lat_) * np.sin(lat_north_pole_) * np.cos(lon_ - lon_north_pole_)
-                    - np.sin(lat_) * np.cos(lat_north_pole_)))
-    y_ = np.arcsin(np.sin(lat_) * np.sin(lat_north_pole_) +
-                   np.cos(lat_) * np.cos(lat_north_pole_) * np.cos(lon_ - lon_north_pole_))
+    x_ = np.arctan(
+        np.cos(lat_) * np.sin(lon_ - lon_north_pole_) /
+        (np.cos(lat_) * np.sin(lat_north_pole_) *
+         np.cos(lon_ - lon_north_pole_) -
+         np.sin(lat_) * np.cos(lat_north_pole_)))
+    y_ = np.arcsin(
+        np.sin(lat_) * np.sin(lat_north_pole_) + np.cos(lat_) *
+        np.cos(lat_north_pole_) * np.cos(lon_ - lon_north_pole_))
     return np.round(np.degrees(x_), 2), np.round(np.degrees(y_), 2)
 
 
@@ -58,8 +61,11 @@ def transform_to_lon_lat(x: float, y: float) -> Tuple[float, float]:
     x_ = np.radians(x)
     y_ = np.radians(y)
 
-    lon_ = np.arctan(np.cos(y_) * np.sin(x_) /
-                     (np.sin(lat_north_pole_) * np.cos(y_) * np.cos(x_)
-                      - np.sin(y_) * np.cos(lat_north_pole_))) + lon_north_pole_
-    lat_ = np.arcsin(np.sin(y_) * np.sin(lat_north_pole_) + np.cos(y_) * np.cos(x_) * np.cos(lat_north_pole_))
+    lon_ = np.arctan(
+        np.cos(y_) * np.sin(x_) /
+        (np.sin(lat_north_pole_) * np.cos(y_) * np.cos(x_) -
+         np.sin(y_) * np.cos(lat_north_pole_))) + lon_north_pole_
+    lat_ = np.arcsin(
+        np.sin(y_) * np.sin(lat_north_pole_) +
+        np.cos(y_) * np.cos(x_) * np.cos(lat_north_pole_))
     return np.degrees(lon_) + 180, np.degrees(lat_)

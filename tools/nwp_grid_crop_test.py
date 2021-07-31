@@ -2,8 +2,9 @@ import numpy as np
 import xarray as xr
 import coordinate_transformer
 
-labels = xr.open_mfdataset("../../local_data/labels/meteosat.CFC.H_ch05.latitude_longitude_201812*.nc",
-                           combine='by_coords').CFC
+labels = xr.open_mfdataset(
+    "../../local_data/labels/meteosat.CFC.H_ch05.latitude_longitude_201812*.nc",
+    combine='by_coords').CFC
 
 max_lat = np.max(labels.lat.values)
 min_lat = np.min(labels.lat.values)
