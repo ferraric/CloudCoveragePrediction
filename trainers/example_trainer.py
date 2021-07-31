@@ -7,9 +7,7 @@ from utils.dirs import list_files_in_directory
 
 class ExampleTrainer(BaseTrain):
     def __init__(self, model, data, config, comet_logger):
-        super(ExampleTrainer, self).__init__(
-            model, data, config, comet_logger
-        )
+        super(ExampleTrainer, self).__init__(model, data, config, comet_logger)
         self.optimizer = tf.keras.optimizers.get(self.config.optimizer)
         self.comet_logger = comet_logger
         self.setup_metrics()
@@ -39,14 +37,15 @@ class ExampleTrainer(BaseTrain):
 
             gradients = tape.gradient(loss, self.model.trainable_variables)
             self.optimizer.apply_gradients(
-                zip(gradients, self.model.trainable_variables)
-            )
+                zip(gradients, self.model.trainable_variables))
 
             self.train_loss(loss)
-            self.comet_logger.log_metric("loss", loss, step=self.optimizer.iterations)
-            self.comet_logger.log_metric(
-                "average_loss", self.train_loss.result(), step=self.optimizer.iterations
-            )
+            self.comet_logger.log_metric("loss",
+                                         loss,
+                                         step=self.optimizer.iterations)
+            self.comet_logger.log_metric("average_loss",
+                                         self.train_loss.result(),
+                                         step=self.optimizer.iterations)
 
     def validation_step(self):
         self.validation_loss.reset_states()
@@ -58,17 +57,17 @@ class ExampleTrainer(BaseTrain):
 
                 self.validation_loss(loss)
 
-            self.comet_logger.log_metric(
-                "average_loss", self.validation_loss.result(), step=self.optimizer.iterations
-            )
+            self.comet_logger.log_metric("average_loss",
+                                         self.validation_loss.result(),
+                                         step=self.optimizer.iterations)
 
             if self.validation_loss.result() < self.best_loss:
                 self.best_loss = self.validation_loss.result()
-                model_files = list_files_in_directory(self.config.checkpoint_dir)
+                model_files = list_files_in_directory(
+                    self.config.checkpoint_dir)
                 self.save_model()
                 for f in model_files:
                     os.remove(f)
-
 
     def save_model(self):
         tf.saved_model.save(
