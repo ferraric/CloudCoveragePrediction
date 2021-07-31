@@ -1,6 +1,7 @@
 import numpy as np
 import json
 
+
 class PitHist():
     def __init__(self, name):
         self.name = name
@@ -17,8 +18,9 @@ class PitHist():
         assert y_true.shape[0] == y_pred.shape[0]
         all_values = np.append(y_pred, y_true, axis=-1)
         corner_cases_ind = ((all_values == 0.0) | (all_values == 100.0))
-        all_values[corner_cases_ind] = all_values[corner_cases_ind] + 0.001 * np.random.standard_normal(
-            all_values[corner_cases_ind].shape)
+        all_values[corner_cases_ind] = all_values[
+            corner_cases_ind] + 0.001 * np.random.standard_normal(
+                all_values[corner_cases_ind].shape)
         ranks = all_values.argsort(axis=-1).argsort(axis=-1)
         return ranks[:, -1]
 
@@ -38,4 +40,3 @@ class PitHist():
 
     def reset_states(self):
         self.ranks = None
-
